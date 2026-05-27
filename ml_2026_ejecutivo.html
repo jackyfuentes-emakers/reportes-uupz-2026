@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mercado Libre 2026 — Reporte Ejecutivo</title>
+<style>
+:root {
+  --bg:#f0f2f7; --white:#fff; --border:#dde1ec; --txt:#1a1d2e; --muted:#6b7280;
+  --ml:#3483fa; --ml-l:#eff6ff; --ml-m:#bfdbfe;
+  --gray:#94a3b8; --purple:#9333ea; --blue:#2563eb;
+  --green:#16a34a; --amber:#d97706; --cyan:#0891b2; --red:#dc2626;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',sans-serif;font-size:13px}
+.page{max-width:1280px;margin:0 auto;padding:24px}
+.hdr{background:var(--white);border-radius:14px;padding:20px 26px;margin-bottom:18px;
+  display:flex;align-items:center;gap:18px;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.hdr-icon{width:42px;height:42px;background:var(--ml);border-radius:10px;display:flex;
+  align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.hdr-title{font-size:20px;font-weight:800}
+.hdr-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.hdr-badges{margin-left:auto;display:flex;gap:8px}
+.badge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;
+  background:var(--ml-l);color:var(--ml);border:1px solid var(--ml-m)}
+.badge-g{background:#f1f5f9;color:var(--muted);border:1px solid var(--border)}
+.badge-info{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe}
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+.kpi{background:var(--white);border-radius:12px;padding:16px 18px;border:1px solid var(--border);
+  border-top:3px solid var(--ml);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.kpi-l{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:7px}
+.kpi-v{font-size:26px;font-weight:900;color:var(--txt);line-height:1}
+.kpi-s{font-size:11px;color:var(--muted);margin-top:4px}
+.kpi-t{font-size:11px;font-weight:700;margin-top:4px;color:var(--green)}
+.kpi-td{font-size:11px;font-weight:700;margin-top:4px;color:var(--red)}
+.g2{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;margin-bottom:18px}
+.g2b{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:18px}
+.card{background:var(--white);border-radius:12px;padding:20px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card-t{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.ct-dot{width:8px;height:8px;border-radius:50%;background:var(--ml)}
+.top5-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:14px;margin-bottom:18px}
+.top5-card{background:var(--white);border-radius:12px;border:1px solid var(--border);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.top5-hdr{padding:12px 16px;display:flex;align-items:center;gap:8px}
+.top5-mes{font-size:13px;font-weight:800}
+.top5-total{margin-left:auto;font-size:11px;color:var(--muted)}
+.top5-row{padding:10px 16px;border-top:1px solid #f3f4f6;cursor:default}
+.top5-row:hover{background:#fafbfd}
+.top5-row-top{display:flex;align-items:center;gap:9px;margin-bottom:5px}
+.top5-rank{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:800;color:#fff;flex-shrink:0}
+.top5-info{flex:1;min-width:0}
+.top5-name{font-size:12px;font-weight:700}
+.top5-cap{font-size:10px;font-weight:600;background:#f1f5f9;color:#475569;padding:1px 6px;border-radius:4px;margin-left:5px}
+.top5-nums{margin-left:auto;text-align:right;flex-shrink:0}
+.top5-val{font-size:13px;font-weight:800;display:block}
+.top5-pct{font-size:10px;color:var(--muted)}
+.top5-bar-track{height:5px;background:#f1f5f9;border-radius:3px;overflow:hidden}
+.top5-bar-fill{height:100%;border-radius:3px;transition:width .3s}
+.div{display:flex;align-items:center;gap:12px;margin:20px 0 14px}
+.div-l{flex:1;height:1px;background:var(--border)}
+.div-s{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+.st{width:100%;border-collapse:collapse;font-size:12px}
+.st th{text-align:left;padding:7px 10px;border-bottom:2px solid var(--border);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+.st td{padding:9px 10px;border-bottom:1px solid #f3f4f6}
+.st tr.tr td{font-weight:700;background:#fafbfd;border-top:2px solid var(--border)}
+.st tr:not(.tr):hover td{background:#fafbfd}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.mom-up{color:var(--green);font-weight:700}
+.mom-dn{color:var(--red);font-weight:700}
+/* DOW */
+.dow-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.dow-lbl{width:74px;font-size:12px;font-weight:600;flex-shrink:0;text-transform:capitalize}
+.dow-bw{flex:1;background:#f1f5f9;border-radius:4px;height:22px;overflow:hidden}
+.dow-bf{height:22px;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:#fff}
+.dow-n{width:48px;text-align:right;font-size:12px;font-weight:700;flex-shrink:0;font-variant-numeric:tabular-nums}
+.dow-p{width:38px;text-align:right;font-size:11px;color:var(--muted);flex-shrink:0}
+.dow-win{background:var(--ml-l);border-radius:8px;padding:2px 6px 2px 2px}
+.yoy-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+/* account badge */
+.acct-badge{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;background:var(--ml-l);color:var(--ml);margin-left:6px}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-icon">🛒</div>
+  <div>
+    <div class="hdr-title">Mercado Libre 2026 — Reporte Ejecutivo</div>
+    <div class="hdr-sub">Semanas 10–21 · Marzo–Mayo 2026 · Cuentas: ML UUPZ + ML EMAKERS</div>
+  </div>
+  <div class="hdr-badges">
+    <span class="badge">SEM 10–21</span>
+    <span class="badge">Mar–May 2026</span>
+    <span class="badge-g badge">2 cuentas activas</span>
+    <span class="badge" style="background:#dcfce7;color:#15803d;border-color:#bbf7d0">▲ +36.9% YoY</span>
+    <a href="global_2026_ejecutivo.html" style="font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;background:#f8faff;color:#4338ca;border:1.5px solid #c7d2fe;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:opacity .15s" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'" title="Ver reporte global">🌐 Ver Global</a>
+  </div>
+</div>
+
+<!-- KPI CARDS -->
+<div class="kpi-row">
+  <div class="kpi">
+    <div class="kpi-l">Pedidos (paquetes)</div>
+    <div class="kpi-v">4,734</div>
+    <div class="kpi-s">Transacciones Mar–May</div>
+    <div class="kpi-t">~50.9 vasos por paquete</div>
+  </div>
+  <div class="kpi" style="border-top-color:var(--red)">
+    <div class="kpi-l">Ticket promedio</div>
+    <div class="kpi-v">$538</div>
+    <div class="kpi-s">MXN bruto por paquete</div>
+    <div class="kpi-t" style="color:var(--muted)">Mar $537 · Abr $539</div>
+  </div>
+  <div class="kpi" style="border-top-color:var(--purple)">
+    <div class="kpi-l">Total vasos</div>
+    <div class="kpi-v">241,322</div>
+    <div class="kpi-s">Acumulado 3 meses</div>
+    <div class="kpi-td">▼ Mayo vs Marzo: −1.8%</div>
+  </div>
+  <div class="kpi" style="border-top-color:var(--blue)">
+    <div class="kpi-l">Ventas (brutas)</div>
+    <div class="kpi-v">$2.55M</div>
+    <div class="kpi-s">~$2,547,761 MXN</div>
+    <div class="kpi-t">▲ Abr vs Marzo: +14.8%</div>
+  </div>
+  <div class="kpi" style="border-top-color:var(--amber)">
+    <div class="kpi-l">$/Vaso neto</div>
+    <div class="kpi-v">$9.52</div>
+    <div class="kpi-s">MXN por unidad · neto Sin IVA</div>
+    <div class="kpi-t">Mar $9.48 · Abr $9.56 · May ~$9.52*</div>
+  </div>
+</div>
+
+<!-- GRÁFICA SEMANAL + DÍA SEMANA -->
+<div class="div"><div class="div-l"></div><span class="div-s">Volumen semanal</span><div class="div-l"></div></div>
+<div class="g2">
+  <div class="card">
+    <div class="card-t">
+      <span class="ct-dot"></span>Vasos semanales — SEM 10 al SEM 21
+      <span style="margin-left:auto;display:flex;gap:10px;font-size:11px">
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#94a3b8;border-radius:2px;display:inline-block"></span>Marzo</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:var(--ml);border-radius:2px;display:inline-block"></span>Abril</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:var(--purple);border-radius:2px;display:inline-block"></span>Mayo</span>
+      </span>
+    </div>
+    <canvas id="cSem"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-t"><span class="ct-dot" style="background:var(--amber)"></span>Pedidos por día de la semana</div>
+    <div id="dowBanner"></div>
+    <div id="dowWrap"></div>
+  </div>
+</div>
+
+<!-- TOP 5 + COLORES -->
+<div class="div"><div class="div-l"></div><span class="div-s">Top 5 modelos · Mayo 2026 &nbsp;&amp;&nbsp; Colores últimas 4 semanas</span><div class="div-l"></div></div>
+<div class="top5-grid">
+  <div id="top5Grid"></div>
+  <div class="card">
+    <div class="card-t"><span class="ct-dot" style="background:var(--purple)"></span>Top 10 colores por capacidad · SEM 18–21 (89,464 vasos)</div>
+    <canvas id="cColores" style="display:block;width:100%"></canvas>
+  </div>
+</div>
+
+<!-- RESUMEN MENSUAL -->
+<div class="div"><div class="div-l"></div><span class="div-s">Resumen mensual</span><div class="div-l"></div></div>
+<div class="g2b">
+  <div class="card">
+    <div class="card-t"><span class="ct-dot" style="background:var(--blue)"></span>Pedidos · Vasos · Ventas por mes</div>
+    <table class="st">
+      <thead><tr>
+        <th>Mes</th><th>Paquetes</th><th>Ticket prom.</th><th>MoM vasos</th><th>Vasos</th><th>$ Bruto</th><th>$/Vaso neto</th>
+      </tr></thead>
+      <tbody>
+        <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>1,477</td><td>$537</td><td style="color:var(--muted);font-size:10px">—</td><td>76,620</td><td>$792,386</td><td>$9.48</td></tr>
+        <tr><td><span class="dot" style="background:var(--ml)"></span>Abril</td><td>1,688</td><td>$539</td><td class="mom-up">▲ +16.8%</td><td>89,470</td><td>$909,684</td><td>$9.56</td></tr>
+        <tr><td><span class="dot" style="background:var(--purple)"></span>Mayo</td><td>1,569</td><td>$539</td><td class="mom-dn">▼ −15.9%</td><td>75,232</td><td>$845,691</td><td style="color:var(--muted)">~$9.52*</td></tr>
+        <tr class="tr"><td>Total general</td><td>4,734</td><td>$538</td><td></td><td>241,322</td><td>$2,547,761</td><td>~$9.52</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:10px;color:var(--muted);margin-top:8px;padding-top:6px;border-top:1px solid #f1f5f9">
+      * $/Vaso neto = ingresos Sin IVA después de comisión ML. Mar y Abr confirmados desde hoja DESGLOSE.
+      Mayo estimado con tasa promedio. Ventas brutas = precio producto sin publicidad ni envío.
+    </p>
+  </div>
+  <div class="card">
+    <div class="card-t"><span class="ct-dot" style="background:var(--amber)"></span>Vasos por mes</div>
+    <canvas id="cMes" height="180"></canvas>
+  </div>
+</div>
+
+<!-- CUENTAS ML -->
+<div class="div"><div class="div-l"></div><span class="div-s">Desglose por cuenta ML</span><div class="div-l"></div></div>
+<div class="card" style="margin-bottom:18px">
+  <div class="card-t"><span class="ct-dot"></span>Vasos y paquetes por cuenta — Mar–May 2026</div>
+  <table class="st">
+    <thead><tr>
+      <th>Cuenta</th><th>Mar Paquetes</th><th>Mar Vasos</th><th>Abr Paquetes</th><th>Abr Vasos</th><th>May Paquetes</th><th>May Vasos</th><th>Total Vasos</th><th>% del total</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>ML EMAKERS</strong><span class="acct-badge">cuenta principal</span></td>
+        <td>916</td><td>54,601</td><td>1,061</td><td>63,964</td><td>1,085</td><td>57,091</td><td><strong>175,656</strong></td><td>72.8%</td>
+      </tr>
+      <tr>
+        <td><strong>ML UUPZ</strong></td>
+        <td>561</td><td>22,019</td><td>627</td><td>25,506</td><td>484</td><td>18,141</td><td><strong>65,666</strong></td><td>27.2%</td>
+      </tr>
+      <tr class="tr">
+        <td>Total ML</td>
+        <td>1,477</td><td>76,620</td><td>1,688</td><td>89,470</td><td>1,569</td><td>75,232</td><td><strong>241,322</strong></td><td>100%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- YOY -->
+<div class="div"><div class="div-l"></div><span class="div-s">Comparativo YoY — 2025 vs 2026</span><div class="div-l"></div></div>
+<div class="yoy-grid">
+  <div class="card">
+    <div class="card-t"><span class="ct-dot" style="background:var(--green)"></span>Vasos por mes · 2025 vs 2026</div>
+    <canvas id="cYoy" height="200"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-t"><span class="ct-dot" style="background:var(--amber)"></span>Resumen YoY · Mar–May</div>
+    <table class="st" style="margin-top:4px">
+      <thead><tr><th>Mes</th><th>2025</th><th>2026</th><th>Δ Vasos</th><th>YoY %</th></tr></thead>
+      <tbody>
+        <tr><td>Marzo</td><td>34,645</td><td>76,620</td><td class="mom-up">+41,975</td><td class="mom-up">▲ +121.1%</td></tr>
+        <tr><td>Abril</td><td>66,344</td><td>89,470</td><td class="mom-up">+23,126</td><td class="mom-up">▲ +34.8%</td></tr>
+        <tr><td>Mayo</td><td>75,229</td><td>75,232</td><td style="color:var(--muted)">+3</td><td style="color:var(--muted)">≈ 0.0%</td></tr>
+        <tr class="tr"><td>Total</td><td>176,218</td><td>241,322</td><td class="mom-up">+65,104</td><td class="mom-up">▲ +36.9%</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px;padding:10px 12px;background:var(--ml-l);border-radius:8px;border:1px solid var(--ml-m)">
+      <div style="font-size:11px;font-weight:700;color:var(--ml);margin-bottom:4px">📊 Nota estratégica</div>
+      <div style="font-size:11px;color:#1e40af;line-height:1.5">
+        Mayo 2026 vs 2025: crecimiento prácticamente nulo (+3 vasos). El fuerte YoY global (+37%) es impulsado principalmente por Marzo (+121%) y Abril (+35%). Canal en proceso de maduración.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+const DPR = window.devicePixelRatio || 1;
+
+function initCanvas(id, h) {
+  const cv = document.getElementById(id);
+  if (!cv) return null;
+  const w = cv.parentElement.clientWidth - 40;
+  cv.width = w * DPR; cv.height = h * DPR;
+  cv.style.width = w + 'px'; cv.style.height = h + 'px';
+  const ctx = cv.getContext('2d');
+  ctx.scale(DPR, DPR);
+  return {ctx, w, h};
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  if (h <= 0) return;
+  r = Math.min(r, h/2, w/2);
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h); ctx.lineTo(x, y+h); ctx.lineTo(x, y+r);
+  ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+}
+
+// ── DATA ──────────────────────────────────────────────
+const SEM_VASOS   = [21261,16622,15461,16036,13403,18113,24032,25198,29278,23839,19214,17133];
+const SEM_PEDIDOS = [394,  339,  307,  272,  274,  330,  459,  489,  556,  502,  434,  342];
+const SEM_LABELS  = ['S10','S11','S12','S13','S14','S15','S16','S17','S18','S19','S20','S21'];
+const MES_COLORS = ['#94a3b8','#3483fa','#9333ea'];
+const MES_RANGES = [[0,3],[3,7],[7,12]]; // indices por mes
+
+const DOW = [
+  {d:'Mar',v:788},{d:'Lun',v:782},{d:'Mié',v:717},
+  {d:'Vie',v:653},{d:'Jue',v:645},{d:'Sáb',v:586},{d:'Dom',v:563}
+];
+
+const TOP5_MAYO = [
+  {rank:1,modelo:'STAR',  cap:'16OZ',vasos:25388,pct:33.7,color:'#3483fa'},
+  {rank:2,modelo:'SUN',   cap:'24OZ',vasos:19331,pct:25.7,color:'#f59e0b'},
+  {rank:3,modelo:'SUN SLIM',cap:'16OZ',vasos:19330,pct:25.7,color:'#10b981'},
+  {rank:4,modelo:'SUN SLIM',cap:'12OZ',vasos:4388, pct:5.8, color:'#8b5cf6'},
+  {rank:5,modelo:'STELLAR',cap:'34OZ',vasos:1640, pct:2.2, color:'#e11d48'},
+];
+
+const COLOR_CAP = {
+  labels: ['ARM','NG','RJ','RS/PST','BG','TSP','AZ','MD/PST','DR/GTRT','AZ/M'],
+  datasets: [
+    {label:'12OZ', color:'#3b82f6', values:[3540, 410, 150, 510, 800,   0,   0, 240,    0,   0]},
+    {label:'16OZ', color:'#8b5cf6', values:[16976,5057,3745,3207,3450,3633,3900,2200,    0,2635]},
+    {label:'20OZ', color:'#10b981', values:[740,   60,  30,  80,   0,   0, 120, 140,    0,   0]},
+    {label:'24OZ', color:'#f59e0b', values:[4066,  654, 523, 536,   0, 534,   0, 552, 2923,   0]},
+    {label:'34OZ', color:'#e11d48', values:[355,    0,   0,   5,   0,   0,   0,   0,    0,   0]},
+  ]
+};
+
+const YOY = {
+  meses: ['Marzo','Abril','Mayo'],
+  v2025: [34645, 66344, 75229],
+  v2026: [76620, 89470, 75232],
+};
+
+const MES_VASOS = [76620, 89470, 75232];
+
+// ── CHART 1: SEMANAL ──────────────────────────────────
+(function() {
+  const h = 240;
+  const r = initCanvas('cSem', h);
+  if (!r) return;
+  const {ctx, w} = r;
+  const PAD = {t:28, l:48, r:14, b:36};
+  const cW = w-PAD.l-PAD.r, cH = h-PAD.t-PAD.b;
+  const bW = Math.max(10, cW/SEM_VASOS.length - 5);
+  const max = Math.max(...SEM_VASOS) * 1.15;
+
+  // Grid
+  [0,.25,.5,.75,1].forEach(t=>{
+    const y = PAD.t + cH*(1-t);
+    ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(PAD.l,y); ctx.lineTo(PAD.l+cW,y); ctx.stroke();
+    ctx.fillStyle='#94a3b8'; ctx.font='10px sans-serif'; ctx.textAlign='right';
+    ctx.fillText((max*t/1000).toFixed(0)+'K', PAD.l-5, y+3.5);
+  });
+
+  SEM_VASOS.forEach((v,i)=>{
+    const x = PAD.l + i*(cW/12) + (cW/12 - bW)/2;
+    const bH = (v/max)*cH;
+    const mesIdx = MES_RANGES.findIndex(([a,b])=>i>=a&&i<b);
+    ctx.fillStyle = MES_COLORS[mesIdx]||'#94a3b8';
+    roundRect(ctx, x, PAD.t+cH-bH, bW, bH, 3);
+    ctx.fill();
+
+    // Pedidos pill
+    ctx.fillStyle = MES_COLORS[mesIdx];
+    ctx.font='bold 8px sans-serif'; ctx.textAlign='center';
+    ctx.fillText(SEM_PEDIDOS[i]+'p', x+bW/2, PAD.t+cH-bH-6);
+
+    // X label
+    ctx.fillStyle='#6b7280'; ctx.font='9px sans-serif'; ctx.textAlign='center';
+    ctx.fillText(SEM_LABELS[i], x+bW/2, h-PAD.b+13);
+  });
+})();
+
+// ── CHART 2: DOW ──────────────────────────────────────
+// ── CHART 2: DOW ──────────────────────────────────────
+(function() {
+  const dowTotal = DOW.reduce((a,b)=>a+b.v,0);
+  const dowMax   = DOW[0].v;
+  // Banner ganador
+  document.getElementById('dowBanner').innerHTML=`
+    <div style="background:var(--ml-l);border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:12px;border:1px solid var(--ml-m)">
+      <div style="font-size:30px;font-weight:900;color:var(--ml)">${DOW[0].d.slice(0,3).toUpperCase()}</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:var(--txt)">Día con más pedidos</div>
+        <div style="font-size:11px;color:var(--muted)">${DOW[0].v} pedidos · ${((DOW[0].v/dowTotal)*100).toFixed(1)}% del total</div>
+      </div>
+    </div>`;
+  const wrap = document.getElementById('dowWrap');
+  DOW.forEach((d,i)=>{
+    const pct = ((d.v/dowTotal)*100).toFixed(1);
+    const w   = ((d.v/dowMax)*100).toFixed(1);
+    const c   = i===0?'#3483fa':i<3?'#60a5fa':'#94a3b8';
+    const win = i===0?' 🏆':'';
+    wrap.innerHTML+=`
+    <div class="dow-row ${i===0?'dow-win':''}">
+      <div class="dow-lbl">${d.d}</div>
+      <div class="dow-bw"><div class="dow-bf" style="width:${w}%;background:${c}">${win}</div></div>
+      <div class="dow-n">${d.v.toLocaleString('es-MX')}</div>
+      <div class="dow-p">${pct}%</div>
+    </div>`;
+  });
+})();
+
+// ── TOP 5 MAYO ────────────────────────────────────────
+(function() {
+  const grid = document.getElementById('top5Grid');
+  const rankColors = ['#3483fa','#0ea5e9','#06b6d4','#0891b2','#155e75'];
+  const total = TOP5_MAYO.reduce((s,m)=>s+m.vasos,0);
+  const maxV = TOP5_MAYO[0].vasos;
+  grid.innerHTML = `
+    <div class="top5-card">
+      <div class="top5-hdr" style="background:linear-gradient(135deg,var(--ml) 0%,#2563eb 100%)">
+        <span class="top5-mes" style="color:#fff">Top 5 · Mayo 2026</span>
+        <span class="top5-total" style="color:rgba(255,255,255,.75)">${total.toLocaleString()} vasos</span>
+      </div>
+      ${TOP5_MAYO.map((m,i)=>`
+      <div class="top5-row">
+        <div class="top5-row-top">
+          <span class="top5-rank" style="background:${rankColors[i]}">${m.rank}</span>
+          <div class="top5-info">
+            <span class="top5-name" style="color:${m.color}">${m.modelo}<span class="top5-cap">${m.cap}</span></span>
+          </div>
+          <div class="top5-nums">
+            <span class="top5-val">${m.vasos.toLocaleString()}</span>
+            <span class="top5-pct">${m.pct}%</span>
+          </div>
+        </div>
+        <div style="padding-left:31px">
+          <div class="top5-bar-track">
+            <div class="top5-bar-fill" style="width:${(m.vasos/maxV*100).toFixed(1)}%;background:${m.color}"></div>
+          </div>
+        </div>
+      </div>`).join('')}
+    </div>`;
+})();
+
+// ── CHART 3: COLORES STACKED ──────────────────────────
+(function() {
+  const cv = document.getElementById('cColores');
+  const w = cv.parentElement.clientWidth - 40;
+  const h = 260;
+  cv.width = w*DPR; cv.height = h*DPR;
+  cv.style.width = w+'px'; cv.style.height = h+'px';
+  const ctx = cv.getContext('2d');
+  ctx.scale(DPR, DPR);
+
+  const {labels, datasets} = COLOR_CAP;
+  const n = labels.length;
+  const PAD = {t:14, l:54, r:10, b:36};
+  const cW = w-PAD.l-PAD.r, cH = h-PAD.t-PAD.b;
+  const bW = Math.max(8, cW/n - 5);
+
+  const totals = labels.map((_,i)=>datasets.reduce((s,d)=>s+(d.values[i]||0),0));
+  const max = Math.max(...totals)*1.12;
+
+  [0,.25,.5,.75,1].forEach(t=>{
+    const y = PAD.t+cH*(1-t);
+    ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(PAD.l,y); ctx.lineTo(PAD.l+cW,y); ctx.stroke();
+    ctx.fillStyle='#94a3b8'; ctx.font='10px sans-serif'; ctx.textAlign='right';
+    ctx.fillText((max*t/1000).toFixed(0)+'K', PAD.l-4, y+3.5);
+  });
+
+  labels.forEach((lbl,i)=>{
+    const x = PAD.l + i*(cW/n) + (cW/n-bW)/2;
+    let yOff = PAD.t+cH;
+    datasets.forEach(ds=>{
+      const v = ds.values[i]||0;
+      if (!v) return;
+      const bH = (v/max)*cH;
+      yOff -= bH;
+      ctx.fillStyle = ds.color;
+      roundRect(ctx, x, yOff, bW, bH, 0);
+      ctx.fill();
+    });
+    ctx.fillStyle='#374151'; ctx.font='9px sans-serif'; ctx.textAlign='center';
+    ctx.fillText(lbl, x+bW/2, h-PAD.b+13);
+    // Total label
+    const tot = totals[i];
+    ctx.fillStyle='#475569'; ctx.font='bold 8px sans-serif'; ctx.textAlign='center';
+    ctx.fillText((tot/1000).toFixed(1)+'K', x+bW/2, PAD.t+cH-(tot/max)*cH-4);
+  });
+
+  // Legend
+  const legY = h-PAD.b+24;
+  datasets.forEach((ds,i)=>{
+    const lx = PAD.l + i*54;
+    ctx.fillStyle=ds.color; ctx.fillRect(lx,legY,9,9);
+    ctx.fillStyle='#374151'; ctx.font='9px sans-serif'; ctx.textAlign='left';
+    ctx.fillText(ds.label, lx+12, legY+8);
+  });
+})();
+
+// ── CHART 4: VASOS POR MES ────────────────────────────
+(function() {
+  const r = initCanvas('cMes', 180);
+  if (!r) return;
+  const {ctx, w, h} = r;
+  const PAD = {t:20, l:44, r:14, b:30};
+  const cW=w-PAD.l-PAD.r, cH=h-PAD.t-PAD.b;
+  const bW = Math.min(cW/3-12, 42);
+  const max = Math.max(...MES_VASOS)*1.15;
+  const meses = ['Marzo','Abril','Mayo'];
+
+  [0,.5,1].forEach(t=>{
+    const y=PAD.t+cH*(1-t);
+    ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(PAD.l,y); ctx.lineTo(PAD.l+cW,y); ctx.stroke();
+    ctx.fillStyle='#94a3b8'; ctx.font='10px sans-serif'; ctx.textAlign='right';
+    ctx.fillText((max*t/1000).toFixed(0)+'K', PAD.l-4, y+3.5);
+  });
+
+  MES_VASOS.forEach((v,i)=>{
+    const x=PAD.l+i*(cW/3)+(cW/3-bW)/2;
+    const bH=(v/max)*cH;
+    ctx.fillStyle=MES_COLORS[i];
+    roundRect(ctx,x,PAD.t+cH-bH,bW,bH,4); ctx.fill();
+    ctx.fillStyle=MES_COLORS[i]; ctx.font='bold 10px sans-serif'; ctx.textAlign='center';
+    ctx.fillText((v/1000).toFixed(1)+'K', x+bW/2, PAD.t+cH-bH-6);
+    ctx.fillStyle='#374151'; ctx.font='10px sans-serif'; ctx.textAlign='center';
+    ctx.fillText(meses[i], x+bW/2, h-PAD.b+12);
+  });
+})();
+
+// ── CHART 5: YoY ─────────────────────────────────────
+(function() {
+  const r = initCanvas('cYoy', 200);
+  if (!r) return;
+  const {ctx, w, h} = r;
+  const PAD={t:24, l:52, r:14, b:44};
+  const cW=w-PAD.l-PAD.r, cH=h-PAD.t-PAD.b;
+  const nM=3;
+  const bW=Math.min(cW/(nM*3), 22);
+  const allV=[...YOY.v2025,...YOY.v2026];
+  const max=Math.max(...allV)*1.15;
+
+  [0,.5,1].forEach(t=>{
+    const y=PAD.t+cH*(1-t);
+    ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(PAD.l,y); ctx.lineTo(PAD.l+cW,y); ctx.stroke();
+    ctx.fillStyle='#94a3b8'; ctx.font='10px sans-serif'; ctx.textAlign='right';
+    ctx.fillText((max*t/1000).toFixed(0)+'K', PAD.l-4, y+3.5);
+  });
+
+  YOY.meses.forEach((mes,mi)=>{
+    const gX=PAD.l+(mi+0.5)*(cW/nM);
+    const v25=YOY.v2025[mi], v26=YOY.v2026[mi];
+    const x25=gX-bW-3, x26=gX+3;
+    // 2025
+    const bH25=(v25/max)*cH;
+    ctx.fillStyle='#cbd5e1';
+    roundRect(ctx,x25,PAD.t+cH-bH25,bW,bH25,3); ctx.fill();
+    ctx.fillStyle='#64748b'; ctx.font='9px sans-serif'; ctx.textAlign='center';
+    ctx.fillText((v25/1000).toFixed(0)+'K', x25+bW/2, PAD.t+cH-bH25-4);
+    // 2026
+    const bH26=(v26/max)*cH;
+    ctx.fillStyle='#3483fa';
+    roundRect(ctx,x26,PAD.t+cH-bH26,bW,bH26,3); ctx.fill();
+    ctx.fillStyle='#3483fa'; ctx.font='bold 9px sans-serif'; ctx.textAlign='center';
+    ctx.fillText((v26/1000).toFixed(0)+'K', x26+bW/2, PAD.t+cH-bH26-4);
+    // Month
+    ctx.fillStyle='#374151'; ctx.font='bold 10px sans-serif'; ctx.textAlign='center';
+    ctx.fillText(mes, gX, h-PAD.b+12);
+    // YoY %
+    const pct=((v26-v25)/v25*100);
+    const isUp=pct>=0;
+    ctx.fillStyle=isUp?'#16a34a':'#dc2626';
+    ctx.font='bold 9px sans-serif'; ctx.textAlign='center';
+    ctx.fillText((isUp?'▲+':'▼')+Math.abs(pct).toFixed(0)+'%', gX, PAD.t-8);
+  });
+
+  // Legend
+  const ly=PAD.t+cH+24;
+  ctx.fillStyle='#cbd5e1'; ctx.fillRect(PAD.l,ly,10,8);
+  ctx.fillStyle='#374151'; ctx.font='10px sans-serif'; ctx.textAlign='left';
+  ctx.fillText('2025', PAD.l+14, ly+8);
+  ctx.fillStyle='#3483fa'; ctx.fillRect(PAD.l+55,ly,10,8);
+  ctx.fillStyle='#374151'; ctx.fillText('2026', PAD.l+69, ly+8);
+})();
+</script>
+</body>
+</html>

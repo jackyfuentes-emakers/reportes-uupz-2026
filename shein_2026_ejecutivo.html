@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHEIN 2026 — Reporte Ejecutivo</title>
+<style>
+:root {
+  --bg:#f0f2f7; --white:#fff; --border:#dde1ec; --txt:#1a1d2e; --muted:#6b7280;
+  --pink:#e11d48; --pink-l:#fff0f3; --pink-m:#fecdd3;
+  --gray:#94a3b8; --purple:#9333ea; --blue:#2563eb;
+  --green:#16a34a; --amber:#d97706; --cyan:#0891b2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',sans-serif;font-size:13px}
+.page{max-width:1280px;margin:0 auto;padding:24px}
+
+/* HEADER */
+.hdr{background:var(--white);border-radius:14px;padding:20px 26px;margin-bottom:18px;
+  display:flex;align-items:center;gap:18px;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.hdr-icon{width:42px;height:42px;background:var(--pink);border-radius:10px;display:flex;
+  align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.hdr-title{font-size:20px;font-weight:800}
+.hdr-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.hdr-badges{margin-left:auto;display:flex;gap:8px}
+.badge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;
+  background:var(--pink-l);color:var(--pink);border:1px solid var(--pink-m)}
+.badge-g{background:#f1f5f9;color:var(--muted);border:1px solid var(--border)}
+
+/* KPI */
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+.kpi{background:var(--white);border-radius:12px;padding:16px 18px;border:1px solid var(--border);
+  border-top:3px solid var(--pink);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.kpi-l{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:7px}
+.kpi-v{font-size:26px;font-weight:900;color:var(--txt);line-height:1}
+.kpi-s{font-size:11px;color:var(--muted);margin-top:4px}
+.kpi-t{font-size:11px;font-weight:700;margin-top:4px;color:var(--green)}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;margin-bottom:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
+.g2b{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:18px}
+
+/* CARD */
+.card{background:var(--white);border-radius:12px;padding:20px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card-t{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.ct-dot{width:8px;height:8px;border-radius:50%;background:var(--pink)}
+
+/* TOP 5 + COLORES */
+.top5-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:14px;margin-bottom:18px}
+.top5-card{background:var(--white);border-radius:12px;border:1px solid var(--border);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.top5-hdr{padding:12px 16px;display:flex;align-items:center;gap:8px}
+.top5-mes{font-size:13px;font-weight:800}
+.top5-total{margin-left:auto;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.top5-row{padding:10px 16px;border-top:1px solid #f3f4f6;cursor:default}
+.top5-row:hover{background:#fafbfd}
+.top5-row-top{display:flex;align-items:center;gap:9px;margin-bottom:5px}
+.top5-rank{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:800;color:#fff;flex-shrink:0}
+.top5-info{flex:1;min-width:0}
+.top5-name{font-size:12px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top5-cap{display:inline-block;font-size:10px;font-weight:600;color:var(--muted);background:#f1f5f9;
+  padding:1px 5px;border-radius:3px;margin-left:5px;white-space:nowrap;vertical-align:middle}
+.top5-nums{text-align:right;flex-shrink:0}
+.top5-val{display:block;font-size:13px;font-weight:800;color:var(--txt);font-variant-numeric:tabular-nums;line-height:1.2}
+.top5-pct{display:block;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums}
+.top5-bar-track{height:5px;background:#f1f5f9;border-radius:3px;overflow:hidden}
+.top5-bar-fill{height:5px;border-radius:3px;transition:width .4s ease}
+/* Rank colors */
+.r1{background:#f59e0b}.r2{background:#94a3b8}.r3{background:#d97706}
+.r4{background:#cbd5e1}.r5{background:#e2e8f0;color:var(--muted)!important}
+
+/* SUMMARY TABLE */
+.st{width:100%;border-collapse:collapse}
+.st th{background:var(--pink);color:#fff;padding:10px 12px;font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.4px;text-align:right}
+.st th:first-child{text-align:left;border-radius:6px 0 0 0}.st th:last-child{border-radius:0 6px 0 0}
+.st td{padding:10px 12px;text-align:right;border-bottom:1px solid #f3f4f6;font-variant-numeric:tabular-nums}
+.st td:first-child{text-align:left;font-weight:700}
+.st tr.tr{background:#fff8f9;border-top:2px solid var(--pink-m)}
+.st tr.tr td{font-weight:800;font-size:13px;color:var(--pink)}
+.st tr.tr td:first-child{color:var(--txt)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+
+/* DOW */
+.dow-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.dow-lbl{width:74px;font-size:12px;font-weight:600;flex-shrink:0;text-transform:capitalize}
+.dow-bw{flex:1;background:#f1f5f9;border-radius:4px;height:22px;overflow:hidden}
+.dow-bf{height:22px;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:#fff}
+.dow-n{width:48px;text-align:right;font-size:12px;font-weight:700;flex-shrink:0;font-variant-numeric:tabular-nums}
+.dow-p{width:38px;text-align:right;font-size:11px;color:var(--muted);flex-shrink:0}
+.dow-win{background:var(--pink-l);border-radius:8px;padding:2px 6px 2px 2px}
+
+/* divider */
+.div{display:flex;align-items:center;gap:10px;margin:20px 0 14px}
+.div-l{flex:1;height:1px;background:var(--border)}
+.div-s{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);white-space:nowrap}
+
+canvas{display:block;width:100%!important}
+.mom-up{color:#16a34a;font-size:11px;font-weight:700;text-align:right;white-space:nowrap}
+.mom-dn{color:#e11d48;font-size:11px;font-weight:700;text-align:right;white-space:nowrap}
+.yoy-up{color:#16a34a;font-size:12px;font-weight:800;text-align:right;white-space:nowrap}
+.yoy-dn{color:#e11d48;font-size:12px;font-weight:800;text-align:right;white-space:nowrap}
+@media(max-width:1100px){.kpi-row{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.kpi-row,.g2,.g3,.g2b{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.kpi-row,.g2,.g3,.g2b{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-icon">🛍</div>
+  <div>
+    <div class="hdr-title">SHEIN — Reporte de Ventas 2026</div>
+    <div class="hdr-sub">Marzo · Abril · Mayo 2026 &nbsp;·&nbsp; Semanas 10–21 &nbsp;·&nbsp; Fuente: VENTAS SHEIN 2026.xlsx</div>
+  </div>
+  <div class="hdr-badges">
+    <span class="badge">Marzo–Mayo 2026</span>
+    <span class="badge badge-g">14,980 pedidos</span>
+    <span class="badge badge-g">212,240 vasos</span>
+    <a href="global_2026_ejecutivo.html" style="font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;background:#f8faff;color:#4338ca;border:1.5px solid #c7d2fe;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:opacity .15s" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'" title="Ver reporte global">🌐 Ver Global</a>
+  </div>
+</div>
+
+<!-- KPIs -->
+<div class="kpi-row">
+  <div class="kpi">
+    <div class="kpi-l">Pedidos únicos</div>
+    <div class="kpi-v">8,260</div>
+    <div class="kpi-s">Transacciones reales de clientes</div>
+    <div class="kpi-t">▲ 1.81 paquetes por pedido</div>
+  </div>
+  <div class="kpi" style="border-top-color:var(--pink)">
+    <div class="kpi-l">Ticket promedio</div>
+    <div class="kpi-v">$654</div>
+    <div class="kpi-s">MXN por pedido único</div>
+    <div class="kpi-t">▲ Mayo $671 vs Abril $627</div>
+  </div>
+  <div class="kpi" style="border-top-color:var(--purple)">
+    <div class="kpi-l">Total vasos</div>
+    <div class="kpi-v">212,240</div>
+    <div class="kpi-s">Acumulado 3 meses</div>
+    <div class="kpi-t">▲ Mayo vs Marzo: +5.4%</div>
+  </div>
+  <div class="kpi" style="border-top-color:var(--blue)">
+    <div class="kpi-l">Ventas (sin IVA)</div>
+    <div class="kpi-v">$2.70M</div>
+    <div class="kpi-s">$2,699,352 MXN</div>
+    <div class="kpi-t">▲ Mayo vs Marzo: +4.9%</div>
+  </div>
+  <div class="kpi" style="border-top-color:var(--amber)">
+    <div class="kpi-l">$/Vaso neto</div>
+    <div class="kpi-v">$12.72</div>
+    <div class="kpi-s">MXN por unidad · post-comisión SHEIN</div>
+    <div class="kpi-t" style="color:var(--muted)">— Estable los 3 meses</div>
+  </div>
+</div>
+
+<!-- GRÁFICA SEMANAL + DÍA SEMANA -->
+<div class="g2">
+  <div class="card">
+    <div class="card-t">
+      <span class="ct-dot"></span>Vasos semanales — SEM 10 al SEM 21
+      <span style="margin-left:auto;display:flex;gap:10px;font-size:11px">
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#94a3b8;border-radius:2px;display:inline-block"></span>Marzo</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#e11d48;border-radius:2px;display:inline-block"></span>Abril</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#9333ea;border-radius:2px;display:inline-block"></span>Mayo</span>
+      </span>
+    </div>
+    <canvas id="cSem" height="240"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-t"><span class="ct-dot" style="background:var(--purple)"></span>Pedidos por día de la semana</div>
+    <div style="background:var(--pink-l);border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:12px">
+      <div style="font-size:30px;font-weight:900;color:var(--pink)">DOM</div>
+      <div>
+        <div style="font-size:13px;font-weight:700">Mejor día de venta</div>
+        <div style="font-size:11px;color:var(--muted)">2,390 pedidos · 15.97% del total</div>
+      </div>
+    </div>
+    <div id="dowWrap"></div>
+  </div>
+</div>
+
+<!-- TOP 5 MODELOS + COLORES -->
+<div class="div"><div class="div-l"></div><span class="div-s">Top 5 modelos · Mayo 2026 &nbsp;&amp;&nbsp; Colores últimas 4 semanas</span><div class="div-l"></div></div>
+<div class="top5-grid">
+  <div id="top5Grid"></div>
+  <div class="card">
+    <div class="card-t"><span class="ct-dot" style="background:var(--purple)"></span>Top 10 colores por capacidad · SEM 18–21 (últimas 4 semanas)</div>
+    <canvas id="cColores" style="display:block;width:100%"></canvas>
+  </div>
+</div>
+
+<!-- RESUMEN MENSUAL + GRÁFICA -->
+<div class="div"><div class="div-l"></div><span class="div-s">Resumen mensual</span><div class="div-l"></div></div>
+<div class="g2b">
+  <div class="card">
+    <div class="card-t"><span class="ct-dot" style="background:var(--blue)"></span>Pedidos · Vasos · Ventas por mes</div>
+    <table class="st">
+      <thead><tr>
+        <th>Mes</th><th>Ped. únicos</th><th>Ticket prom.</th><th>MoM vasos</th><th>Vasos</th><th>$ Sin IVA</th><th>$/Vaso neto</th>
+      </tr></thead>
+      <tbody>
+        <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>2,668</td><td>$665</td><td style="color:var(--muted);font-size:10px">—</td><td>68,740</td><td>$876,787</td><td>$12.75</td></tr>
+        <tr><td><span class="dot" style="background:var(--pink)"></span>Abril</td><td>2,856</td><td>$627</td><td class="mom-up">▲ 3.4%</td><td>71,060</td><td>$902,514</td><td>$12.70</td></tr>
+        <tr><td><span class="dot" style="background:var(--purple)"></span>Mayo</td><td>2,736</td><td>$671</td><td class="mom-up">▲ 1.9%</td><td>72,440</td><td>$920,051</td><td>$12.70</td></tr>
+        <tr class="tr"><td>Total general</td><td>8,260</td><td>$654</td><td></td><td>212,240</td><td>$2,699,352</td><td>$12.72</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <div class="card-t"><span class="ct-dot" style="background:var(--amber)"></span>Vasos por mes</div>
+    <canvas id="cMes" height="180"></canvas>
+  </div>
+</div>
+
+<!-- YoY 2025 vs 2026 -->
+<div class="div"><div class="div-l"></div><span class="div-s">Comparativo año a año · SHEIN</span><div class="div-l"></div></div>
+<div class="card">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+    <div class="card-t" style="margin-bottom:0"><span class="ct-dot" style="background:var(--green)"></span>Vasos 2025 vs 2026 — Marzo · Abril · Mayo</div>
+    <span style="font-size:10px;color:var(--muted);background:#f8fafc;border:1px solid var(--border);padding:3px 8px;border-radius:6px">⚠ Canal SHEIN inició operaciones en UUPZ en Marzo 2025</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
+    <table class="st">
+      <thead><tr>
+        <th>Mes</th><th>2025 vasos</th><th>2026 vasos</th><th>Crec. YoY</th>
+      </tr></thead>
+      <tbody>
+        <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>4,610</td><td>68,740</td><td class="yoy-up">▲ +1,391%</td></tr>
+        <tr><td><span class="dot" style="background:var(--pink)"></span>Abril</td><td>22,030</td><td>71,060</td><td class="yoy-up">▲ +223%</td></tr>
+        <tr><td><span class="dot" style="background:var(--purple)"></span>Mayo</td><td>50,440</td><td>72,440</td><td class="yoy-up">▲ +44%</td></tr>
+        <tr class="tr"><td>Total Mzo–May</td><td>77,080</td><td>212,240</td><td class="yoy-up" style="color:var(--green)!important">▲ +175%</td></tr>
+      </tbody>
+    </table>
+    <canvas id="cYoy" style="display:block;width:100%"></canvas>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  MINI CHARTING ENGINE — 100% Vanilla JS, sin librerías
+// ═══════════════════════════════════════════════════════
+const π = Math.PI;
+
+function clr(hex, a=1){
+  const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+function n(v){ return v==null ? '—' : Number(v).toLocaleString('es-MX'); }
+
+// ─── BAR CHART ─────────────────────────────────────────
+function drawBar(canvasId, {labels, values, colors, topLabels, min=0, unit='', height=240, showGrid=true}){
+  const canvas = document.getElementById(canvasId);
+  if(!canvas) return;
+  const dpr = window.devicePixelRatio||1;
+  const W = canvas.offsetWidth||canvas.parentElement.offsetWidth||600;
+  const H = height;
+  canvas.width = W*dpr; canvas.height = H*dpr;
+  canvas.style.height = H+'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+
+  const padL=42, padR=12, padT=36, padB=36;
+  const cW=W-padL-padR, cH=H-padT-padB;
+  const n=values.length;
+  const barW = Math.floor(cW/n*0.62);
+  const gap  = (cW - barW*n)/(n);
+
+  const maxV = Math.max(...values.filter(v=>v!=null));
+  const minV = min;
+  const range = maxV - minV;
+
+  // Grid lines
+  if(showGrid){
+    const steps=4;
+    ctx.strokeStyle='#f1f5f9'; ctx.lineWidth=1;
+    for(let i=0;i<=steps;i++){
+      const v = minV + range*i/steps;
+      const y = padT + cH - (v-minV)/range*cH;
+      ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(padL+cW,y); ctx.stroke();
+      ctx.fillStyle='#9ca3af'; ctx.font='10px -apple-system,sans-serif';
+      ctx.textAlign='right';
+      ctx.fillText((v>=1000?(v/1000).toFixed(0)+'k':v.toFixed(0))+(unit||''), padL-4, y+3.5);
+    }
+  }
+
+  // Bars
+  values.forEach((v,i)=>{
+    if(v==null) return;
+    const x = padL + gap/2 + i*(barW+gap);
+    const bH = (v-minV)/range*cH;
+    const y  = padT + cH - bH;
+    const c  = Array.isArray(colors)?colors[i]:colors;
+
+    // Bar fill
+    ctx.fillStyle = clr(c, 0.85);
+    const r=5;
+    ctx.beginPath();
+    ctx.moveTo(x+r,y); ctx.lineTo(x+barW-r,y);
+    ctx.quadraticCurveTo(x+barW,y,x+barW,y+r);
+    ctx.lineTo(x+barW,y+bH); ctx.lineTo(x,y+bH);
+    ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
+    ctx.closePath(); ctx.fill();
+
+    // Top label (e.g. pedidos count)
+    if(topLabels && topLabels[i]!=null){
+      const lbl = topLabels[i].toLocaleString('es-MX');
+      ctx.font = 'bold 10px -apple-system,sans-serif';
+      const tw = ctx.measureText(lbl).width+8;
+      const bx = x+barW/2-tw/2, by = y-18;
+      ctx.fillStyle = clr(c,1);
+      ctx.beginPath(); ctx.roundRect(bx,by,tw,14,3); ctx.fill();
+      ctx.fillStyle='#fff'; ctx.textAlign='center';
+      ctx.fillText(lbl, x+barW/2, by+10);
+    }
+
+    // X label
+    ctx.fillStyle='#6b7280'; ctx.font='10px -apple-system,sans-serif'; ctx.textAlign='center';
+    ctx.fillText(labels[i], x+barW/2, padT+cH+14);
+  });
+
+  // Axis line
+  ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(padL,padT); ctx.lineTo(padL,padT+cH); ctx.lineTo(padL+cW,padT+cH); ctx.stroke();
+}
+
+// ─── STACKED BAR CHART ─────────────────────────────────
+function drawStackedBar(canvasId, {labels, datasets, height=260}){
+  const canvas = document.getElementById(canvasId);
+  if(!canvas) return;
+  const dpr = window.devicePixelRatio||1;
+  const W = canvas.offsetWidth||canvas.parentElement.offsetWidth||600;
+  const H = height;
+  canvas.width=W*dpr; canvas.height=H*dpr;
+  canvas.style.height=H+'px';
+  const ctx=canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+
+  const padL=46, padR=12, padT=22, padB=52;
+  const cW=W-padL-padR, cH=H-padT-padB;
+  const n=labels.length;
+  const barW=Math.floor(cW/n*0.68);
+  const gap=(cW-barW*n)/n;
+
+  const totals=labels.map((_,i)=>datasets.reduce((s,d)=>s+(d.values[i]||0),0));
+  const maxV=Math.max(...totals);
+
+  // Grid
+  const steps=4;
+  ctx.strokeStyle='#f1f5f9'; ctx.lineWidth=1;
+  for(let i=0;i<=steps;i++){
+    const v=maxV*i/steps;
+    const y=padT+cH-(v/maxV)*cH;
+    ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(padL+cW,y); ctx.stroke();
+    ctx.fillStyle='#9ca3af'; ctx.font='10px -apple-system,sans-serif'; ctx.textAlign='right';
+    ctx.fillText(v>=1000?(v/1000).toFixed(0)+'k':v.toFixed(0), padL-4, y+3.5);
+  }
+
+  // Stacked bars
+  labels.forEach((lbl,i)=>{
+    const x=padL+gap/2+i*(barW+gap);
+    let yBot=padT+cH;
+    datasets.forEach(d=>{
+      const v=d.values[i]||0;
+      if(v===0) return;
+      const bH=(v/maxV)*cH;
+      const y=yBot-bH;
+      ctx.fillStyle=d.color;
+      ctx.fillRect(x,y,barW,bH);
+      ctx.strokeStyle='#fff'; ctx.lineWidth=1; ctx.strokeRect(x,y,barW,bH);
+      yBot=y;
+    });
+    // Total label
+    const total=totals[i];
+    const topY=padT+cH-(total/maxV)*cH;
+    ctx.fillStyle='#374151'; ctx.font='bold 9px -apple-system,sans-serif'; ctx.textAlign='center';
+    ctx.fillText(total>=1000?(total/1000).toFixed(1)+'k':total, x+barW/2, topY-4);
+    // X label
+    ctx.fillStyle='#6b7280'; ctx.font='10px -apple-system,sans-serif'; ctx.textAlign='center';
+    ctx.fillText(lbl, x+barW/2, padT+cH+13);
+  });
+
+  // Capacity legend
+  const legTotal=datasets.length;
+  const legW=52, legH=14, legGap=8;
+  const legStartX=padL+(cW-(legTotal*(legW+legGap)-legGap))/2;
+  const legY=H-18;
+  datasets.forEach((d,i)=>{
+    const lx=legStartX+i*(legW+legGap);
+    ctx.fillStyle=d.color; ctx.fillRect(lx,legY,10,10);
+    ctx.fillStyle='#374151'; ctx.font='10px -apple-system,sans-serif'; ctx.textAlign='left';
+    ctx.fillText(d.label, lx+13, legY+9);
+  });
+
+  // Axis
+  ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(padL,padT); ctx.lineTo(padL,padT+cH); ctx.lineTo(padL+cW,padT+cH); ctx.stroke();
+}
+
+// ─── DONUT CHART ───────────────────────────────────────
+function drawDonut(canvasId, {labels, values, colors, size=220}){
+  const canvas = document.getElementById(canvasId);
+  if(!canvas) return;
+  const dpr = window.devicePixelRatio||1;
+  canvas.width=size*dpr; canvas.height=size*dpr;
+  canvas.style.width=size+'px'; canvas.style.height=size+'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+  const cx=size/2, cy=size/2-14, R=size/2-14, r=R*0.6;
+  const total = values.reduce((a,b)=>a+b,0);
+  let angle = -π/2;
+  values.forEach((v,i)=>{
+    const sweep = (v/total)*2*π;
+    ctx.beginPath(); ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,R,angle,angle+sweep);
+    ctx.closePath();
+    ctx.fillStyle = clr(colors[i],.88);
+    ctx.fill();
+    ctx.strokeStyle='#fff'; ctx.lineWidth=2.5; ctx.stroke();
+    angle += sweep;
+  });
+  // Hole
+  ctx.beginPath(); ctx.arc(cx,cy,r,0,2*π);
+  ctx.fillStyle='#fff'; ctx.fill();
+  // Center text
+  ctx.fillStyle='#1a1d2e'; ctx.font='bold 14px -apple-system,sans-serif'; ctx.textAlign='center';
+  ctx.fillText(total.toLocaleString('es-MX'), cx, cy+5);
+  ctx.fillStyle='#9ca3af'; ctx.font='10px -apple-system,sans-serif';
+  ctx.fillText('vasos', cx, cy+18);
+  // Legend
+  const legendY = size-24;
+  labels.forEach((l,i)=>{
+    const x = (i%(labels.length>4?3:labels.length))*(size/(labels.length>4?3:labels.length));
+    const y = legendY + Math.floor(i/(labels.length>4?3:labels.length))*16;
+    ctx.fillStyle=colors[i]; ctx.fillRect(x+4,y,8,8);
+    ctx.fillStyle='#6b7280'; ctx.font='9px -apple-system,sans-serif'; ctx.textAlign='left';
+    ctx.fillText(l.length>10?l.slice(0,10)+'…':l, x+15, y+8);
+  });
+}
+
+// ══════════════════════════════════════════════════════
+//  DATA
+// ══════════════════════════════════════════════════════
+const SEMS   = ['SEM 10','SEM 11','SEM 12','SEM 13','SEM 14','SEM 15','SEM 16','SEM 17','SEM 18','SEM 19','SEM 20','SEM 21'];
+const SEM_V  = [17280,15390,14150,15000,15090,15820,18330,16330,22180,20200,18460,20330];
+const SEM_P  = [1158,1039,929,1054,1105,1147,1327,1174,1580,1409,1344,1462];
+const SEM_C  = ['#94a3b8','#94a3b8','#94a3b8','#94a3b8','#e11d48','#e11d48','#e11d48','#e11d48','#9333ea','#9333ea','#9333ea','#9333ea'];
+
+const MESES  = ['Marzo','Abril','Mayo'];
+const MES_V  = [68740,71060,72440];
+const MES_C  = ['#94a3b8','#e11d48','#9333ea'];
+
+// ── Render semanas
+drawBar('cSem',{labels:SEMS, values:SEM_V, colors:SEM_C, topLabels:SEM_P, min:11000, height:260});
+
+// ── Render meses
+drawBar('cMes',{labels:MESES, values:MES_V, colors:MES_C, min:65000, height:180});
+
+// ══════════════════════════════════════════════════════
+//  DÍA DE SEMANA (HTML, sin canvas)
+// ══════════════════════════════════════════════════════
+const DOW = [
+  {d:'Domingo',v:2390},{d:'Martes',v:2263},{d:'Lunes',v:2238},
+  {d:'Viernes',v:2146},{d:'Miércoles',v:2131},{d:'Sábado',v:1932},{d:'Jueves',v:1880}
+];
+const dowTotal = DOW.reduce((a,b)=>a+b.v,0);
+const dowMax   = DOW[0].v;
+const dowWrap  = document.getElementById('dowWrap');
+DOW.forEach((d,i)=>{
+  const pct = ((d.v/dowTotal)*100).toFixed(1);
+  const w   = ((d.v/dowMax)*100).toFixed(1);
+  const c   = i===0?'#e11d48': i<3?'#f87171':'#fca5a5';
+  const win = i===0?' 🏆':'';
+  dowWrap.innerHTML += `
+  <div class="dow-row ${i===0?'dow-win':''}">
+    <div class="dow-lbl">${d.d}</div>
+    <div class="dow-bw"><div class="dow-bf" style="width:${w}%;background:${c}">${win}</div></div>
+    <div class="dow-n">${d.v.toLocaleString('es-MX')}</div>
+    <div class="dow-p">${pct}%</div>
+  </div>`;
+});
+
+// ══════════════════════════════════════════════════════
+//  TOP 5 MODELOS POR MES
+// ══════════════════════════════════════════════════════
+const ALL_MOD = [
+  {nombre:'SUN',      cap:'24OZ', col:'#e11d48', mar:28130, abr:31030, may:33270},
+  {nombre:'SUN',      cap:'16OZ', col:'#f43f5e', mar:1910,  abr:2060,  may:2040},
+  {nombre:'SUN SLIM', cap:'16OZ', col:'#9333ea', mar:14610, abr:14490, may:12940},
+  {nombre:'SUN SLIM', cap:'12OZ', col:'#a855f7', mar:13570, abr:12600, may:13000},
+  {nombre:'SUN SLIM', cap:'20OZ', col:'#c084fc', mar:3510,  abr:3540,  may:4960},
+  {nombre:'STAR',     cap:'16OZ', col:'#2563eb', mar:3090,  abr:3580,  may:3030},
+  {nombre:'STAR',     cap:'12OZ', col:'#60a5fa', mar:2200,  abr:2270,  may:1630},
+  {nombre:'STELLAR',  cap:'34OZ', col:'#d97706', mar:1460,  abr:1040,  may:1240},
+  {nombre:'SATURN',   cap:'12OZ', col:'#0891b2', mar:130,   abr:240,   may:170},
+  {nombre:'SATURN',   cap:'20OZ', col:'#22d3ee', mar:100,   abr:90,    may:150},
+  {nombre:'MOON',     cap:'16OZ', col:'#64748b', mar:20,    abr:0,     may:0},
+];
+
+// ── TOP 5 MAYO SOLAMENTE ──────────────────────────────
+const MAY_TOTAL = 72440;
+const MAY_DOT   = '#9333ea';
+const rankCls   = ['r1','r2','r3','r4','r5'];
+const grid      = document.getElementById('top5Grid');
+
+const sorted5 = [...ALL_MOD].sort((a,b) => b.may - a.may).slice(0,5);
+const maxV5   = sorted5[0].may;
+let rows5 = '';
+sorted5.forEach((m, i) => {
+  const v   = m.may;
+  const pct = ((v / MAY_TOTAL)*100).toFixed(1);
+  const bw  = Math.round(v / maxV5 * 100);
+  rows5 += `
+  <div class="top5-row">
+    <div class="top5-row-top">
+      <span class="top5-rank ${rankCls[i]}">${i+1}</span>
+      <div class="top5-info">
+        <span class="top5-name" style="color:${m.col}">${m.nombre}<span class="top5-cap">${m.cap}</span></span>
+      </div>
+      <div class="top5-nums">
+        <span class="top5-val">${v.toLocaleString('es-MX')}</span>
+        <span class="top5-pct">${pct}%</span>
+      </div>
+    </div>
+    <div style="padding-left:31px">
+      <div class="top5-bar-track"><div class="top5-bar-fill" style="width:${bw}%;background:${m.col}"></div></div>
+    </div>
+  </div>`;
+});
+
+grid.innerHTML = `
+<div class="top5-card" style="height:100%">
+  <div class="top5-hdr" style="border-bottom:3px solid ${MAY_DOT}">
+    <span style="width:10px;height:10px;border-radius:50%;background:${MAY_DOT};display:inline-block"></span>
+    <span class="top5-mes">Mayo 2026</span>
+    <span class="top5-total">${MAY_TOTAL.toLocaleString('es-MX')} vasos totales</span>
+  </div>
+  ${rows5}
+</div>`;
+
+// ── TOP 10 COLORES × CAPACIDAD (SEM 18–21) ───────────
+// Fuente: VENTAS SHEIN 2026.xlsx — hoja TABLAS
+const CAP_COLORS = {
+  '12OZ':'#3b82f6',
+  '16OZ':'#8b5cf6',
+  '20OZ':'#10b981',
+  '24OZ':'#f59e0b',
+  '34OZ':'#e11d48',
+};
+const COLOR_CAP = {
+  labels: ['RS/PST','NG','DR/GTRT','RJ','MD/PST','TSP','AZ/PST','TSP/GTR','AZ/CIE','BG'],
+  datasets: [
+    {label:'12OZ', color:CAP_COLORS['12OZ'], values:[2710,1700,   0,1080,1420,   0,1930,  0,  0,2010]},
+    {label:'16OZ', color:CAP_COLORS['16OZ'], values:[2610,1890,   0,1850,1360,2450,1360,230,380, 940]},
+    {label:'20OZ', color:CAP_COLORS['20OZ'], values:[1320,3150,   0, 240, 270,   0,   0,  0,  0,   0]},
+    {label:'24OZ', color:CAP_COLORS['24OZ'], values:[3480,1900,5640,2260,1030,1480,   0,2160,2630,  0]},
+    {label:'34OZ', color:CAP_COLORS['34OZ'], values:[   0,   0,   0,   0,   0,   0,   0, 720, 140,  0]},
+  ]
+};
+
+drawStackedBar('cColores', {
+  labels:   COLOR_CAP.labels,
+  datasets: COLOR_CAP.datasets,
+  height:   260
+});
+
+// ── YoY CHART (barras agrupadas 2025 vs 2026) ─────────
+(function drawYoy(){
+  const canvas = document.getElementById('cYoy');
+  if(!canvas) return;
+  const dpr = window.devicePixelRatio||1;
+  const W = canvas.offsetWidth||canvas.parentElement.offsetWidth||400;
+  const H = 180;
+  canvas.width=W*dpr; canvas.height=H*dpr;
+  canvas.style.height=H+'px';
+  const ctx=canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+
+  const meses   = ['Marzo','Abril','Mayo'];
+  const v2025   = [4610, 22030, 50440];
+  const v2026   = [68740, 71060, 72440];
+  const c2025   = '#cbd5e1';
+  const c2026   = '#9333ea';
+  const padL=42, padR=12, padT=20, padB=40;
+  const cW=W-padL-padR, cH=H-padT-padB;
+  const n=meses.length;
+  const grpW=cW/n;
+  const barW=grpW*0.3;
+  const maxV=Math.max(...v2026)*1.05;
+
+  // Grid
+  [0,.25,.5,.75,1].forEach(f=>{
+    const y=padT+cH-f*cH;
+    ctx.strokeStyle='#f1f5f9'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(padL+cW,y); ctx.stroke();
+    if(f>0){
+      ctx.fillStyle='#9ca3af'; ctx.font='9px -apple-system,sans-serif'; ctx.textAlign='right';
+      const v=maxV*f;
+      ctx.fillText(v>=1000?(v/1000).toFixed(0)+'k':v.toFixed(0), padL-3, y+3);
+    }
+  });
+
+  meses.forEach((m,i)=>{
+    const cx = padL + i*grpW + grpW/2;
+    const x25 = cx - barW - 2;
+    const x26 = cx + 2;
+
+    // 2025 bar
+    const h25 = (v2025[i]/maxV)*cH;
+    ctx.fillStyle=c2025;
+    ctx.fillRect(x25, padT+cH-h25, barW, h25);
+
+    // 2026 bar
+    const h26 = (v2026[i]/maxV)*cH;
+    const r=4;
+    const bx=x26, by=padT+cH-h26;
+    ctx.fillStyle=c2026;
+    ctx.beginPath();
+    ctx.moveTo(bx+r,by); ctx.lineTo(bx+barW-r,by);
+    ctx.quadraticCurveTo(bx+barW,by,bx+barW,by+r);
+    ctx.lineTo(bx+barW,by+h26); ctx.lineTo(bx,by+h26);
+    ctx.lineTo(bx,by+r); ctx.quadraticCurveTo(bx,by,bx+r,by);
+    ctx.closePath(); ctx.fill();
+
+    // Mes label
+    ctx.fillStyle='#6b7280'; ctx.font='10px -apple-system,sans-serif'; ctx.textAlign='center';
+    ctx.fillText(m, cx, padT+cH+13);
+  });
+
+  // Eje
+  ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(padL,padT); ctx.lineTo(padL,padT+cH); ctx.lineTo(padL+cW,padT+cH); ctx.stroke();
+
+  // Leyenda
+  const legY=H-14;
+  [[c2025,'2025'],[c2026,'2026']].forEach(([c,l],i)=>{
+    const lx=padL+cW/2-40+i*50;
+    ctx.fillStyle=c; ctx.fillRect(lx,legY,10,10);
+    ctx.fillStyle='#374151'; ctx.font='bold 10px -apple-system,sans-serif'; ctx.textAlign='left';
+    ctx.fillText(l, lx+13, legY+9);
+  });
+})();
+
+// Re-render on resize
+window.addEventListener('resize',()=>{
+  drawBar('cSem',{labels:SEMS,values:SEM_V,colors:SEM_C,topLabels:SEM_P,min:11000,height:260});
+  drawBar('cMes',{labels:MESES,values:MES_V,colors:MES_C,min:65000,height:180});
+  drawStackedBar('cColores',{labels:COLOR_CAP.labels,datasets:COLOR_CAP.datasets,height:260});
+});
+</script>
+</body>
+</html>

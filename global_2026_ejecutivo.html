@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UUPZ 2026 — Reporte Global Multiplataforma</title>
+<style>
+:root {
+  --bg:#f0f2f7; --white:#fff; --border:#dde1ec; --txt:#1a1d2e; --muted:#6b7280;
+  --green:#16a34a; --red:#dc2626; --amber:#d97706; --blue:#2563eb; --purple:#7c3aed;
+  --shein:#e11d48; --amazon:#f97316; --ml:#3483fa; --tiktok:#2d2d2d; --web:#6366f1;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',sans-serif;font-size:13px}
+.page{max-width:1280px;margin:0 auto;padding:24px}
+
+/* HEADER */
+.hdr{background:var(--white);border-radius:14px;padding:20px 26px;margin-bottom:14px;
+  display:flex;align-items:center;gap:18px;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.hdr-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:24px;flex-shrink:0;background:linear-gradient(135deg,var(--shein) 0%,var(--amazon) 50%,var(--ml) 100%)}
+.hdr-title{font-size:20px;font-weight:900;letter-spacing:-.3px}
+.hdr-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.hdr-right{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.chip{display:flex;align-items:center;gap:5px;padding:3px 11px;border-radius:20px;font-size:11px;font-weight:700;border:1.5px solid}
+.chip svg{width:7px;height:7px;border-radius:50%}
+
+/* BANNER */
+.banner{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:10px 16px;margin-bottom:16px;
+  display:flex;align-items:center;gap:12px;font-size:12px}
+.banner-icon{font-size:16px;flex-shrink:0}
+.banner-txt strong{color:#15803d}
+.banner-txt{color:#14532d;flex:1}
+.progress-wrap{min-width:140px}
+.progress-track{height:8px;background:#bbf7d0;border-radius:4px;overflow:hidden;margin-bottom:3px}
+.progress-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--shein),var(--amazon));width:40%}
+.progress-lbl{font-size:10px;color:#15803d;text-align:center;font-weight:700}
+
+/* KPI ROW */
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+.kpi{background:var(--white);border-radius:12px;padding:16px 18px;border:1px solid var(--border);
+  border-top:3px solid #94a3b8;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.kpi-l{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:7px}
+.kpi-v{font-size:26px;font-weight:900;color:var(--txt);line-height:1}
+.kpi-s{font-size:11px;color:var(--muted);margin-top:4px}
+.kpi-t{font-size:11px;font-weight:700;margin-top:4px}
+
+/* DIVIDER */
+.div{display:flex;align-items:center;gap:12px;margin:20px 0 14px}
+.div-l{flex:1;height:1px;background:var(--border)}
+.div-s{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+
+/* CARDS */
+.card{background:var(--white);border-radius:12px;padding:20px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card-t{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);
+  margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.ct-dot{width:8px;height:8px;border-radius:50%;background:#94a3b8;flex-shrink:0}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+.g21{display:grid;grid-template-columns:1.8fr 1fr;gap:16px;margin-bottom:18px}
+
+/* LEGEND */
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600}
+.leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+
+/* TABLE */
+.st{width:100%;border-collapse:collapse;font-size:12px}
+.st th{text-align:left;padding:8px 10px;border-bottom:2px solid var(--border);font-size:10px;
+  font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);white-space:nowrap}
+.st td{padding:9px 10px;border-bottom:1px solid #f3f4f6;vertical-align:middle}
+.st tr.total td{font-weight:700;background:#fafbfd;border-top:2px solid var(--border)}
+.st tr.pending td{color:#9ca3af;font-style:italic}
+.st tr:not(.total):not(.pending):hover td{background:#fafbfd}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;flex-shrink:0}
+.up{color:var(--green);font-weight:700}
+.dn{color:var(--red);font-weight:700}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
+.tag-up{background:#dcfce7;color:#15803d}
+.tag-dn{background:#fee2e2;color:#b91c1c}
+.tag-nd{background:#f1f5f9;color:#94a3b8}
+
+/* CANAL LIDER */
+.canal-badges{display:flex;gap:8px;margin-top:8px}
+.cbadge{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:10px;border:1px solid}
+
+/* NOTE */
+.note{font-size:10px;color:var(--muted);margin-top:8px;padding-top:7px;border-top:1px solid #f1f5f9}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══ HEADER ═══ -->
+<div class="hdr">
+  <div class="hdr-icon">🌐</div>
+  <div>
+    <div class="hdr-title">UUPZ — Reporte Global 2026</div>
+    <div class="hdr-sub">Consolidado multiplataforma · Semanas 10–21 · Marzo–Mayo 2026</div>
+  </div>
+  <div class="hdr-right">
+    <div class="chips">
+      <a href="shein_2026_ejecutivo.html" class="chip" style="color:var(--shein);border-color:#fecdd3;background:#fff1f2;text-decoration:none;cursor:pointer;transition:opacity .15s" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'" title="Ver reporte SHEIN">
+        <svg style="fill:var(--shein)"><circle cx="3.5" cy="3.5" r="3.5"/></svg>SHEIN ✓
+      </a>
+      <a href="amazon_2026_ejecutivo.html" class="chip" style="color:var(--amazon);border-color:#fed7aa;background:#fff7ed;text-decoration:none;cursor:pointer;transition:opacity .15s" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'" title="Ver reporte Amazon">
+        <svg style="fill:var(--amazon)"><circle cx="3.5" cy="3.5" r="3.5"/></svg>Amazon ✓
+      </a>
+      <a href="ml_2026_ejecutivo.html" class="chip" style="color:var(--ml);border-color:#bfdbfe;background:#eff6ff;text-decoration:none;cursor:pointer;transition:opacity .15s" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'" title="Ver reporte Mercado Libre">
+        <svg style="fill:var(--ml)"><circle cx="3.5" cy="3.5" r="3.5"/></svg>ML ✓
+      </a>
+      <a href="tiktok_2026_ejecutivo.html" class="chip" style="color:var(--tiktok);border-color:#d4d4d8;background:#f5f5f5;text-decoration:none;cursor:pointer;transition:opacity .15s" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'" title="Ver reporte TikTok">
+        <svg style="fill:var(--tiktok)"><circle cx="3.5" cy="3.5" r="3.5"/></svg>TikTok ✓
+      </a>
+      <a href="web_2026_ejecutivo.html" class="chip" style="color:var(--web);border-color:#c7d2fe;background:#eef2ff;text-decoration:none;cursor:pointer;transition:opacity .15s" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'" title="Ver reporte WEB">
+        <svg style="fill:var(--web)"><circle cx="3.5" cy="3.5" r="3.5"/></svg>WEB ✓
+      </a>
+    </div>
+    <div style="font-size:10px;color:var(--green);font-weight:700">✓ 5 de 5 plataformas integradas · datos completos</div>
+  </div>
+</div>
+
+<!-- ═══ BANNER ═══ -->
+<div class="banner">
+  <div class="banner-icon">✅</div>
+  <div class="banner-txt" style="color:#14532d"><strong style="color:#15803d">✅ Reporte completo.</strong> SHEIN, Amazon, Mercado Libre, TikTok y WEB integrados (100% de la red de canales).</div>
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-fill" style="width:100%;background:linear-gradient(90deg,var(--shein),var(--amazon),var(--ml),var(--tiktok),var(--web))"></div></div>
+    <div class="progress-lbl">5 / 5 plataformas activas</div>
+  </div>
+</div>
+
+<!-- ═══ KPI CARDS ═══ -->
+<div class="kpi-row">
+  <div class="kpi" style="border-top-color:var(--purple)">
+    <div class="kpi-l">Pedidos únicos</div>
+    <div class="kpi-v">17,359</div>
+    <div class="kpi-s">SHEIN 8,260 · ML 4,734 · TT 2,152 · WEB 1,003 · Amz 1,210</div>
+    <div class="kpi-t" style="color:var(--green)">✓ 5 de 5 canales integrados</div>
+  </div>
+  <div class="kpi" style="border-top-color:var(--green)">
+    <div class="kpi-l">Total vasos</div>
+    <div class="kpi-v">617,306</div>
+    <div class="kpi-s">Acumulado 3 meses · 5 canales</div>
+    <div class="kpi-t" style="color:var(--muted)">ML 39.1% · SHEIN 34.4% · WEB 15.8% · Amz+TT 10.7%</div>
+  </div>
+  <div class="kpi" style="border-top-color:var(--blue)">
+    <div class="kpi-l">Ingresos netos</div>
+    <div class="kpi-v">$7.29M</div>
+    <div class="kpi-s">~$7,294,255 MXN sin IVA + fees</div>
+    <div class="kpi-t" style="color:var(--muted)">SHEIN $2.70M · ML $2.30M · WEB $1.26M · TT+Amz $1.04M</div>
+  </div>
+  <div class="kpi" style="border-top-color:var(--amber)">
+    <div class="kpi-l">$/Vaso neto pond.</div>
+    <div class="kpi-v">$11.82</div>
+    <div class="kpi-s">Promedio ponderado por volumen</div>
+    <div class="kpi-t">TikTok $18.32 · Amz $13.10 · SHEIN $12.72 · WEB $12.91 · ML $9.52</div>
+  </div>
+  <div class="kpi" style="border-top-color:var(--ml)">
+    <div class="kpi-l">Canal líder · Volumen 2026</div>
+    <div class="kpi-v" style="font-size:22px;color:var(--ml)">ML</div>
+    <div class="kpi-s">39.1% del volumen · 241K vasos</div>
+    <div class="kpi-t" style="color:var(--green)">▲ +36.9% YoY · SHEIN lidera en neto</div>
+  </div>
+</div>
+
+<!-- ═══ SECCIÓN 1: PARTICIPACIÓN ═══ -->
+<div class="div"><div class="div-l"></div><span class="div-s">Participación por canal</span><div class="div-l"></div></div>
+<div class="g2">
+  <div class="card">
+    <div class="card-t"><span class="ct-dot" style="background:var(--green)"></span>% del volumen (vasos) — Mar–May 2026</div>
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:var(--ml)"></div>ML 39.1%</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--shein)"></div>SHEIN 34.4%</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--web)"></div>WEB 15.8%</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--amazon)"></div>Amazon 5.5%</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--tiktok)"></div>TikTok 5.3%</div>
+    </div>
+    <canvas id="cPartVasos"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-t"><span class="ct-dot" style="background:var(--blue)"></span>% del ingreso neto — Mar–May 2026</div>
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:var(--shein)"></div>SHEIN 37.0%</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--ml)"></div>ML 31.5%</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--web)"></div>WEB 17.2%</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--tiktok)"></div>TikTok 8.2%</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--amazon)"></div>Amazon 6.1%</div>
+    </div>
+    <canvas id="cPartNeto"></canvas>
+  </div>
+</div>
+
+<!-- ═══ SECCIÓN 2: EVOLUCIÓN MENSUAL ═══ -->
+<div class="div"><div class="div-l"></div><span class="div-s">Evolución mensual por canal · Vasos</span><div class="div-l"></div></div>
+<div class="card" style="margin-bottom:18px">
+  <div class="card-t">
+    <span class="ct-dot"></span>Vasos desplazados por mes y plataforma — Marzo / Abril / Mayo 2026
+    <span style="margin-left:auto;display:flex;gap:14px;font-size:11px">
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:var(--shein);border-radius:2px;display:inline-block"></span>SHEIN</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:var(--amazon);border-radius:2px;display:inline-block"></span>Amazon</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:var(--ml);border-radius:2px;display:inline-block"></span>ML</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:var(--tiktok);border-radius:2px;display:inline-block"></span>TikTok</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:var(--web);border-radius:2px;display:inline-block"></span>WEB</span>
+    </span>
+  </div>
+  <canvas id="cEvo"></canvas>
+</div>
+
+<!-- ═══ SECCIÓN 3: TABLA COMPARATIVA ═══ -->
+<div class="div"><div class="div-l"></div><span class="div-s">Comparativo de plataformas · Mar–May 2026</span><div class="div-l"></div></div>
+<div class="card" style="margin-bottom:18px">
+  <div class="card-t"><span class="ct-dot" style="background:var(--purple)"></span>Métricas clave por canal</div>
+  <table class="st">
+    <thead>
+      <tr>
+        <th>Canal</th>
+        <th>Pedidos únicos</th>
+        <th>Vasos totales</th>
+        <th>% volumen</th>
+        <th>Ingreso neto</th>
+        <th>$/Vaso neto</th>
+        <th>MoM mayo</th>
+        <th>YoY vasos</th>
+        <th>Tendencia</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="dot" style="background:var(--shein)"></span><strong>SHEIN</strong></td>
+        <td>8,260</td>
+        <td>212,240</td>
+        <td>34.4%</td>
+        <td>$2,699,352</td>
+        <td>$12.72</td>
+        <td class="up">▲ +2.0%</td>
+        <td class="up">▲ +175%</td>
+        <td><span class="tag tag-up">↑ Creciendo</span></td>
+      </tr>
+      <tr>
+        <td><span class="dot" style="background:var(--amazon)"></span><strong>Amazon</strong></td>
+        <td>1,210</td>
+        <td>33,740</td>
+        <td>5.5%</td>
+        <td>~$442,069</td>
+        <td>~$13.10</td>
+        <td class="dn">▼ −18.5%</td>
+        <td class="dn">▼ −21.5%</td>
+        <td><span class="tag tag-dn">↓ A la baja</span></td>
+      </tr>
+      <tr>
+        <td><span class="dot" style="background:var(--ml)"></span><strong>Mercado Libre</strong></td>
+        <td>4,734</td>
+        <td>241,322</td>
+        <td>39.1%</td>
+        <td>~$2,297,893</td>
+        <td>~$9.52</td>
+        <td class="dn">▼ −15.9%</td>
+        <td class="up">▲ +36.9%</td>
+        <td><span class="tag tag-up">↑ Creciendo</span></td>
+      </tr>
+      <tr>
+        <td><span class="dot" style="background:var(--tiktok)"></span><strong>TikTok</strong></td>
+        <td>2,152</td>
+        <td>32,656</td>
+        <td>5.3%</td>
+        <td>$598,101</td>
+        <td>$18.32</td>
+        <td class="dn">▼ −24.5%</td>
+        <td class="up">▲ +1,650%</td>
+        <td><span class="tag tag-up">↑ Canal nuevo</span></td>
+      </tr>
+      <tr>
+        <td><span class="dot" style="background:var(--web)"></span><strong>WEB</strong></td>
+        <td>1,003</td>
+        <td>97,348</td>
+        <td>15.8%</td>
+        <td>~$1,256,840</td>
+        <td>~$12.91</td>
+        <td class="dn">▼ −0.7%</td>
+        <td class="dn">▼ −35.1%</td>
+        <td><span class="tag tag-dn">↓ A la baja</span></td>
+      </tr>
+      <tr class="total">
+        <td>Total general (5/5)</td>
+        <td>17,359</td>
+        <td>617,306</td>
+        <td>100%</td>
+        <td>~$7,294,255</td>
+        <td>~$11.82</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">Porcentajes calculados sobre los 5 canales. Ingresos netos Amazon y ML para Mayo son estimados. TikTok sin comisión de plataforma (neto = bruto ÷ 1.16). WEB incluye comisión Shopify 15.21% + IVA. WEB registra pedidos en bulto (~97 vasos/pedido) — canal mayoreo.</p>
+</div>
+
+<!-- ═══ SECCIÓN 4: RENTABILIDAD + YOY ═══ -->
+<div class="div"><div class="div-l"></div><span class="div-s">Rentabilidad y tendencia YoY</span><div class="div-l"></div></div>
+<div class="g21">
+  <div class="card">
+    <div class="card-t"><span class="ct-dot" style="background:var(--amber)"></span>Comparativo YoY — Vasos por mes · 2025 vs 2026</div>
+    <div class="legend" style="margin-bottom:8px">
+      <div class="leg-item"><div class="leg-dot" style="background:#cbd5e1;border-radius:2px"></div>2025</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--shein)"></div>SHEIN 2026</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--amazon)"></div>Amazon 2026</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--ml)"></div>ML 2026</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--tiktok)"></div>TikTok 2026</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--web)"></div>WEB 2026</div>
+    </div>
+    <canvas id="cYoy"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-t"><span class="ct-dot" style="background:var(--purple)"></span>Mapa · Volumen vs Rentabilidad</div>
+    <canvas id="cBubble"></canvas>
+    <p class="note">Tamaño de burbuja proporcional al volumen. Eje X = vasos totales · Eje Y = $/Vaso neto.</p>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+// ╔══════════════════════════════════════════╗
+// ║               DATA                       ║
+// ╚══════════════════════════════════════════╝
+const PLAT = [
+  { id:'shein',  label:'SHEIN',         color:'#e11d48', active:true,
+    pedidos:8260, vasos:212240, neto:2699352, pvNeto:12.72, yoy:175,  momMayo:2.0,
+    vasos2025:[4610,22030,50440], vasos2026:[68740,71060,72440] },
+  { id:'amazon', label:'Amazon',        color:'#f97316', active:true,
+    pedidos:1210, vasos:33740,  neto:442069,  pvNeto:13.10, yoy:-21.5,momMayo:-18.5,
+    vasos2025:[11765,14840,16380], vasos2026:[12500,11700,9540] },
+  { id:'ml',     label:'Mercado Libre', color:'#3483fa', active:true,
+    pedidos:4734, vasos:241322, neto:2297893, pvNeto:9.52, yoy:36.9, momMayo:-15.9,
+    vasos2025:[34645,66344,75229], vasos2026:[76620,89470,75232] },
+  { id:'tiktok', label:'TikTok',        color:'#2d2d2d', active:true,
+    pedidos:2152, vasos:32656, neto:598101, pvNeto:18.32, yoy:1650, momMayo:-24.5,
+    vasos2025:[15,604,1247], vasos2026:[9116,13411,10129] },
+  { id:'web',    label:'WEB',            color:'#6366f1', active:true,
+    pedidos:1003, vasos:97348, neto:1256840, pvNeto:12.91, yoy:-35.1, momMayo:-0.7,
+    vasos2025:[38653,62567,48735], vasos2026:[33798,31884,31666] },
+];
+const ACTIVE = PLAT.filter(p=>p.active);
+const MESES_S = ['Mar','Abr','May'];
+const DPR = window.devicePixelRatio || 1;
+
+function initCanvas(id, h) {
+  const cv = document.getElementById(id);
+  const w  = cv.parentElement.clientWidth - 40;
+  cv.width  = w * DPR; cv.height = h * DPR;
+  cv.style.width = w+'px'; cv.style.height = h+'px';
+  const ctx = cv.getContext('2d');
+  ctx.scale(DPR, DPR);
+  return {ctx, w, h: h};
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h); ctx.lineTo(x, y+h); ctx.lineTo(x, y+r);
+  ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+}
+
+// ╔══════════════════════════════════════════╗
+// ║  CHART 1 & 2: Stacked horizontal bars   ║
+// ╚══════════════════════════════════════════╝
+function drawStackedH(canvasId, segments) {
+  const {ctx, w, h} = initCanvas(canvasId, 110);
+  const total = segments.reduce((s,d)=>s+d.v, 0);
+  const PAD = {t:32, l:8, r:8, b:26};
+  const bH = 36, bY = PAD.t, bW = w - PAD.l - PAD.r;
+
+  // shadow
+  ctx.shadowColor='rgba(0,0,0,.06)'; ctx.shadowBlur=6;
+  let x = PAD.l;
+  segments.forEach(d => {
+    const sw = (d.v/total) * bW;
+    ctx.fillStyle = d.color;
+    ctx.fillRect(x, bY, sw, bH);
+    // Label inside if wide enough
+    if (sw > 55) {
+      ctx.shadowColor='transparent';
+      ctx.fillStyle = 'rgba(255,255,255,.95)';
+      ctx.font = `bold 11px -apple-system,sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.fillText(d.label, x+sw/2, bY+14);
+      ctx.font = '10px -apple-system,sans-serif';
+      ctx.fillText((d.v/total*100).toFixed(1)+'%', x+sw/2, bY+27);
+    }
+    x += sw;
+    ctx.shadowColor='rgba(0,0,0,.06)';
+  });
+  ctx.shadowColor='transparent';
+
+  // Values below
+  x = PAD.l;
+  segments.forEach(d => {
+    const sw = (d.v/total) * bW;
+    ctx.fillStyle = d.color;
+    ctx.font = '10px -apple-system,sans-serif';
+    ctx.textAlign = 'center';
+    if (sw > 40) ctx.fillText(d.v.toLocaleString(), x+sw/2, bY+bH+14);
+    x += sw;
+  });
+
+  // Total
+  ctx.fillStyle = '#6b7280'; ctx.font='10px sans-serif'; ctx.textAlign='left';
+  ctx.fillText('Total: '+total.toLocaleString(), PAD.l, bY-10);
+}
+
+drawStackedH('cPartVasos', ACTIVE.map(p=>({label:p.label, v:p.vasos, color:p.color})));
+drawStackedH('cPartNeto',  ACTIVE.map(p=>({label:p.label, v:p.neto,  color:p.color})));
+
+// ╔══════════════════════════════════════════╗
+// ║  CHART 3: Grouped bars — Evolución      ║
+// ╚══════════════════════════════════════════╝
+(function drawEvo() {
+  const {ctx, w, h} = initCanvas('cEvo', 220);
+  const PAD = {t:24, l:54, r:20, b:36};
+  const cW = w-PAD.l-PAD.r, cH = h-PAD.t-PAD.b;
+  const nM = 3, nP = ACTIVE.length;
+  const gW = cW/nM;
+  const bW = Math.min(gW*0.28, 32), gap = 5;
+  const maxV = Math.max(...ACTIVE.flatMap(p=>p.vasos2026)) * 1.18;
+
+  // Grid
+  [0,.25,.5,.75,1].forEach(t=>{
+    const y = PAD.t + cH*(1-t);
+    ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(PAD.l,y); ctx.lineTo(PAD.l+cW,y); ctx.stroke();
+    ctx.fillStyle='#94a3b8'; ctx.font='10px sans-serif'; ctx.textAlign='right';
+    ctx.fillText((maxV*t/1000).toFixed(0)+'K', PAD.l-5, y+3.5);
+  });
+
+  MESES_S.forEach((mes, mi)=>{
+    const gX = PAD.l + mi*gW + gW/2;
+    const totalBW = nP*bW + (nP-1)*gap;
+    const startX = gX - totalBW/2;
+
+    ACTIVE.forEach((p, pi)=>{
+      const v = p.vasos2026[mi];
+      const bH = (v/maxV)*cH;
+      const x = startX + pi*(bW+gap);
+      const y = PAD.t+cH-bH;
+      ctx.fillStyle = p.color;
+      roundRect(ctx, x, y, bW, bH, 3);
+      ctx.fill();
+      // pill label
+      const lbl = (v/1000).toFixed(0)+'K';
+      ctx.fillStyle = p.color;
+      ctx.font='bold 9px sans-serif'; ctx.textAlign='center';
+      ctx.fillText(lbl, x+bW/2, y-5);
+    });
+
+    // Month label
+    ctx.fillStyle='#374151'; ctx.font='bold 11px sans-serif'; ctx.textAlign='center';
+    ctx.fillText(mes, gX, h-PAD.b+14);
+
+    // Total line
+    const tot = ACTIVE.reduce((s,p)=>s+p.vasos2026[mi],0);
+    ctx.fillStyle='#6b7280'; ctx.font='10px sans-serif'; ctx.textAlign='center';
+    ctx.fillText((tot/1000).toFixed(0)+'K total', gX, PAD.t-10);
+  });
+})();
+
+// ╔══════════════════════════════════════════╗
+// ║  CHART 4: YoY grouped                   ║
+// ╚══════════════════════════════════════════╝
+(function drawYoy() {
+  const {ctx, w, h} = initCanvas('cYoy', 210);
+  const PAD = {t:28, l:54, r:16, b:44};
+  const cW = w-PAD.l-PAD.r, cH = h-PAD.t-PAD.b;
+  const nP = ACTIVE.length;    // active platforms
+  const nM = 3;                // 3 months
+  const platW = cW / nP;
+  const bW = Math.min(platW*0.14, 18);
+  const allV = ACTIVE.flatMap(p=>[...p.vasos2025,...p.vasos2026]);
+  const maxV = Math.max(...allV)*1.18;
+
+  // Grid
+  [0,.5,1].forEach(t=>{
+    const y = PAD.t+cH*(1-t);
+    ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(PAD.l,y); ctx.lineTo(PAD.l+cW,y); ctx.stroke();
+    ctx.fillStyle='#94a3b8'; ctx.font='10px sans-serif'; ctx.textAlign='right';
+    ctx.fillText((maxV*t/1000).toFixed(0)+'K', PAD.l-4, y+3.5);
+  });
+
+  ACTIVE.forEach((p, pi)=>{
+    const pX = PAD.l + (pi+0.5)*platW;
+    const mW = nM*(bW*2+2)+(nM-1)*4;
+    const startX = pX - mW/2;
+
+    MESES_S.forEach((m, mi)=>{
+      const v25 = p.vasos2025[mi];
+      const v26 = p.vasos2026[mi];
+      const mx = startX + mi*(bW*2+6);
+      // 2025 bar
+      const bH25=(v25/maxV)*cH;
+      ctx.fillStyle='#cbd5e1';
+      roundRect(ctx,mx,PAD.t+cH-bH25,bW,bH25,2); ctx.fill();
+      // 2026 bar
+      const bH26=(v26/maxV)*cH;
+      ctx.fillStyle=p.color;
+      roundRect(ctx,mx+bW+2,PAD.t+cH-bH26,bW,bH26,2); ctx.fill();
+      // Month label
+      ctx.fillStyle='#9ca3af'; ctx.font='9px sans-serif'; ctx.textAlign='center';
+      ctx.fillText(m, mx+bW+1, PAD.t+cH+11);
+    });
+
+    // Platform label
+    ctx.fillStyle=p.color; ctx.font='bold 11px sans-serif'; ctx.textAlign='center';
+    ctx.fillText(p.label, pX, h-8);
+
+    // YoY badge
+    const tot25=p.vasos2025.reduce((s,v)=>s+v,0);
+    const tot26=p.vasos2026.reduce((s,v)=>s+v,0);
+    const pct=((tot26-tot25)/tot25*100).toFixed(1);
+    const isUp = pct > 0;
+    ctx.fillStyle = isUp?'#15803d':'#b91c1c';
+    ctx.font='bold 10px sans-serif'; ctx.textAlign='center';
+    ctx.fillText((isUp?'▲ +':'▼ ')+pct+'%', pX, PAD.t-9);
+  });
+
+  // Legend
+  const ly = PAD.t+cH+22;
+  ctx.fillStyle='#cbd5e1'; ctx.fillRect(PAD.l,ly,10,8);
+  ctx.fillStyle='#374151'; ctx.font='10px sans-serif'; ctx.textAlign='left';
+  ctx.fillText('2025', PAD.l+14, ly+8);
+  ctx.fillStyle='#6b7280'; ctx.fillRect(PAD.l+55,ly,10,8);
+  ctx.fillStyle='#374151'; ctx.fillText('2026 (color del canal)', PAD.l+69, ly+8);
+})();
+
+// ╔══════════════════════════════════════════╗
+// ║  CHART 5: Bubble — volumen vs $/vaso    ║
+// ╚══════════════════════════════════════════╝
+(function drawBubble() {
+  const {ctx, w, h} = initCanvas('cBubble', 200);
+  const PAD = {t:24, l:52, r:16, b:34};
+  const cW = w-PAD.l-PAD.r, cH = h-PAD.t-PAD.b;
+
+  const maxX = 280000, minY = 8.5, maxY = 20;
+
+  // Grid
+  [0,.25,.5,.75,1].forEach(t=>{
+    const y = PAD.t+cH*(1-t);
+    ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(PAD.l,y); ctx.lineTo(PAD.l+cW,y); ctx.stroke();
+    const v = minY+(maxY-minY)*t;
+    ctx.fillStyle='#94a3b8'; ctx.font='10px sans-serif'; ctx.textAlign='right';
+    ctx.fillText('$'+v.toFixed(1), PAD.l-4, y+3.5);
+  });
+  [0,.25,.5,.75,1].forEach(t=>{
+    const x = PAD.l+cW*t;
+    ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(x,PAD.t); ctx.lineTo(x,PAD.t+cH); ctx.stroke();
+    ctx.fillStyle='#94a3b8'; ctx.font='10px sans-serif'; ctx.textAlign='center';
+    ctx.fillText((maxX*t/1000).toFixed(0)+'K', x, PAD.t+cH+14);
+  });
+
+  // Axis labels
+  ctx.save(); ctx.translate(13, PAD.t+cH/2); ctx.rotate(-Math.PI/2);
+  ctx.fillStyle='#6b7280'; ctx.font='10px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('$/Vaso neto', 0, 0); ctx.restore();
+  ctx.fillStyle='#6b7280'; ctx.font='10px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('Volumen (vasos)', PAD.l+cW/2, h-4);
+
+  // Bubbles
+  ACTIVE.forEach(p=>{
+    const bx = PAD.l + (p.vasos/maxX)*cW;
+    const by = PAD.t + cH - ((p.pvNeto-minY)/(maxY-minY))*cH;
+    const r  = Math.sqrt(p.vasos/maxX)*36 + 10;
+
+    // Shadow
+    ctx.shadowColor='rgba(0,0,0,.12)'; ctx.shadowBlur=8;
+    ctx.beginPath(); ctx.arc(bx, by, r, 0, Math.PI*2);
+    ctx.fillStyle = p.color+'28'; ctx.fill();
+    ctx.shadowColor='transparent';
+    ctx.strokeStyle=p.color; ctx.lineWidth=2.5;
+    ctx.beginPath(); ctx.arc(bx, by, r, 0, Math.PI*2); ctx.stroke();
+
+    // Platform name above
+    ctx.fillStyle=p.color; ctx.font='bold 11px sans-serif'; ctx.textAlign='center';
+    ctx.fillText(p.label, bx, by-r-6);
+    // $/vaso inside
+    ctx.fillStyle='#374151'; ctx.font='bold 10px sans-serif'; ctx.textAlign='center';
+    ctx.fillText('$'+p.pvNeto.toFixed(2), bx, by+3);
+    ctx.fillStyle='#6b7280'; ctx.font='9px sans-serif';
+    ctx.fillText((p.vasos/1000).toFixed(0)+'K vasos', bx, by+14);
+  });
+})();
+</script>
+</body>
+</html>
