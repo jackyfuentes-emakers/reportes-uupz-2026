@@ -1,101 +1,68 @@
 # Reportes Ejecutivos UUPZ 2026
 
-## Estructura de cada reporte de plataforma
+## Última actualización
+Semana 22 · Junio 2026
 
-Todos los reportes siguen la misma estructura (referencia: tiktok_2026_ejecutivo.html):
-
-### Secciones en orden
-1. **Header** — nombre plataforma, periodo, 4 KPI pills (pedidos, vasos, neto, $/vaso)
-2. **Volumen semanal** — gráfica de barras canvas (SEM10–SEM21), pills de pedidos encima de cada barra
-3. **Día de la semana** — tabla DOW con ganador destacado
-4. **Volumen mensual** — barras Marzo/Abril/Mayo con etiqueta K
-5. **Top 5 modelos mayo** — cards con barra de progreso
-6. **Comparativa YoY** — barras dobles 2025 vs 2026 por mes
-7. **Desglose Modelo × Capacidad** — stacked bar canvas
-8. **Tabla resumen mensual** — pedidos, ticket, vasos, neto, $/vaso con variaciones MoM
-
-### Clases CSS clave
-- `.g2` → grid 2 columnas (1.55fr + 1fr)
-- `.g2b` → grid 2 columnas (2fr + 1fr)
-- `.top5-grid` → grid (1fr + 1.4fr)
-- `.badge`, `.badge-g` → chips KPI (rojo/verde)
-- `.dow-row`, `.dow-bf`, `.dow-win` → filas día semana
-- `.st` → tabla summary mensual
-- `.top5-card`, `.top5-hdr`, `.top5-row` → cards Top 5
-
-### Funciones JS compartidas
-- `initCanvas(id, h)` → inicializa canvas responsive
-- `drawBar(ctx, data, cfg)` → barras simples
-- `drawStackedBar(ctx, labels, datasets, cfg)` → barras apiladas
-- `roundRect(ctx, x, y, w, h, r)` → helper ML (inline IIFE)
-- IIFE `drawYoy()` → gráfica comparativa YoY
-
----
-
-## Datos por plataforma (Mayo 2026 acumulado Marzo–Mayo)
+## Datos por plataforma (Mayo 2026 acumulado Marzo–Mayo, incluye SEM22)
 
 ### SHEIN
-- Pedidos: 8,260 | Vasos: 212,240 | Neto: $2,699,352 | $/vaso: $12.72
-- YoY: +175% | MoM mayo: +2.0%
-- Archivo: `VENTAS SHEIN 2026.xlsx`
+- Pedidos: 16,675 | Vasos: 236,760 | Neto: $3,014,071 | $/vaso: $12.73
+- YoY: +207% | MoM mayo: +36.4%
+- SEM_V = [17280,15390,14150,15000,15090,15820,18330,16330,22180,20060,18450,19940,25060]
+- SEM_P = [1158,1039,929,1054,1105,1147,1327,1174,1580,1399,1343,1434,1738]
+- DOW winner: Domingo (2,636 ped)
 
 ### Amazon
-- Pedidos: 1,210 | Vasos: 33,740 | Neto: $442,069 | $/vaso: $13.10
-- YoY: −21.5% | MoM mayo: −18.5%
-- Archivo: `VENTAS AMAZON 2026.xlsx`
+- Pedidos: 1,765 | Vasos: 36,350 | Neto: $476,185 | $/vaso: $13.10
+- YoY: −15.4% | MoM mayo: +3.8%
+- SEM_V = [2875,3020,2320,1755,2860,2360,3670,3330,2010,3560,2820,3160,2610]
+- SEM_P = [132,143,109,101,117,119,174,160,96,164,144,169,137]
+- DOW winner: Martes (451 ped)
 
 ### Mercado Libre
-- Pedidos: 4,734 | Vasos: 241,322 | Neto: $2,297,893 | $/vaso: $9.52
-- YoY: +36.9% | MoM mayo: −15.9%
-- Archivo: `VENTAS ML 2026.xlsx` (sheet VENTAS, rows 53–85)
-- Weekly pedidos en sheet VENTAS, rows 73–85 (pivot Semana × Paquetes)
+- Pedidos: 5,118 | Vasos: 261,421 | Neto: $2,488,728 | $/vaso: $9.52
+- YoY: +48.4% | MoM mayo: +6.5%
+- SEM_V = [21261,16622,15461,16036,13403,18113,24032,25198,29278,23804,19214,17079,19389]
+- SEM_P = [394,339,307,272,274,330,459,489,592,627,570,474,474]
+- DOW winner: Martes (955 ped)
 
 ### TikTok
-- Pedidos: 2,152 | Vasos: 32,656 | Neto: $598,101 | $/vaso: $18.32
-- YoY: +1,650% | MoM mayo: −24.5%
-- Archivo: `VENTAS WEB + TT 2026.xlsx`
-- Sin comisión de plataforma → neto = bruto / 1.16
+- Pedidos: 2,284 | Vasos: 33,966 | Neto: $640,130 | $/vaso: $18.84
+- YoY: +1,720% | MoM mayo: −29.5%
+- SEM_V = [1566,1372,2266,2476,2939,3458,4006,2962,2056,4666,1416,2719,2064]
+- SEM_P = [95,89,144,163,186,236,251,203,144,310,148,183,132]
 
 ### WEB / Shopify
-- Pedidos: 1,003 | Vasos: 97,348 | Neto: $1,256,840 | $/vaso: $12.91
-- YoY: −35.1% | MoM mayo: −0.7%
-- Archivo: `VENTAS WEB + TT 2026.xlsx`
-- Comisión Shopify 15.21% → neto = bruto × 0.8479 / 1.16
-- Canal B2B/mayoreo → ticket promedio ~$1,714/pedido, ~97 vasos/orden
+- Pedidos: 1,126 | Vasos: 109,688 | Neto: $1,402,905 | $/vaso: $12.79
+- YoY: −9.7% | MoM mayo: +38.0%
+- SEM_V = [10106,7805,5614,6822,6309,6867,8224,7399,5670,11110,11796,9900,12200]
+- SEM_P = [111,83,67,59,61,78,87,80,51,121,99,99,122]
 
 ---
 
 ## Global (global_2026_ejecutivo.html)
 
-Array PLAT (última versión completa):
 ```javascript
 const PLAT = [
   { id:'shein',  label:'SHEIN',         color:'#e11d48', active:true,
-    pedidos:8260,  vasos:212240, neto:2699352, pvNeto:12.72, yoy:175,   momMayo:2.0,
-    vasos2025:[4610,22030,50440],   vasos2026:[68740,71060,72440] },
-  { id:'amazon', label:'Amazon',         color:'#f97316', active:true,
-    pedidos:1210,  vasos:33740,  neto:442069,  pvNeto:13.10, yoy:-21.5, momMayo:-18.5,
-    vasos2025:[11765,14840,16380], vasos2026:[12500,11700,9540] },
-  { id:'ml',     label:'Mercado Libre',  color:'#3483fa', active:true,
-    pedidos:4734,  vasos:241322, neto:2297893, pvNeto:9.52,  yoy:36.9,  momMayo:-15.9,
-    vasos2025:[34645,66344,75229], vasos2026:[76620,89470,75232] },
-  { id:'tiktok', label:'TikTok',         color:'#2d2d2d', active:true,
-    pedidos:2152,  vasos:32656,  neto:598101,  pvNeto:18.32, yoy:1650,  momMayo:-24.5,
-    vasos2025:[15,604,1247],       vasos2026:[9116,13411,10129] },
-  { id:'web',    label:'WEB',            color:'#6366f1', active:true,
-    pedidos:1003,  vasos:97348,  neto:1256840, pvNeto:12.91, yoy:-35.1, momMayo:-0.7,
-    vasos2025:[38653,62567,48735], vasos2026:[33798,31884,31666] },
+    pedidos:16675, vasos:236760, neto:3014071, pvNeto:12.73, yoy:207,   momMayo:36.4,
+    vasos2025:[4610,22030,50440],   vasos2026:[68740,71060,96960] },
+  { id:'amazon', label:'Amazon',        color:'#f97316', active:true,
+    pedidos:1765,  vasos:36350,  neto:476185,  pvNeto:13.10, yoy:-15.4, momMayo:3.8,
+    vasos2025:[11765,14840,16380], vasos2026:[12500,11700,12150] },
+  { id:'ml',     label:'Mercado Libre', color:'#3483fa', active:true,
+    pedidos:5118,  vasos:261421, neto:2488728, pvNeto:9.52,  yoy:48.4,  momMayo:6.5,
+    vasos2025:[34645,66344,75229], vasos2026:[76620,89470,95331] },
+  { id:'tiktok', label:'TikTok',        color:'#2d2d2d', active:true,
+    pedidos:2284,  vasos:33966,  neto:640130,  pvNeto:18.84, yoy:1720,  momMayo:-29.5,
+    vasos2025:[15,604,1247],       vasos2026:[7680,15421,10865] },
+  { id:'web',    label:'WEB',           color:'#6366f1', active:true,
+    pedidos:1126,  vasos:109688, neto:1402905, pvNeto:12.79, yoy:-9.7,  momMayo:38.0,
+    vasos2025:[38653,62567,48735], vasos2026:[33798,31884,44006] },
 ];
 ```
 
-KPIs globales: Pedidos=17,359 · Vasos=617,306 · Neto=$7.29M · $/Vaso=$11.82
-Bubble chart: `maxX=280000, minY=8.5, maxY=20`
-
----
-
-## Notas técnicas
-
-- Los Excel (~58–60 MB) requieren `openpyxl.load_workbook(..., read_only=True)` para no crashear
-- ML weekly pedidos: sheet VENTAS, pivot en rows 73–85 (col A=Semana, col B=Paquetes, col C=Vasos)
-- TikTok y WEB están en el mismo archivo `VENTAS WEB + TT 2026.xlsx`
-- Colores de mes: Marzo=`#94a3b8` (gris), Abril=color plataforma, Mayo=`#9333ea` (morado)
+KPIs globales: Pedidos=26,968 · Vasos=678,185 · Neto=$8.02M · $/Vaso=$11.83
+Vol %: ML 38.5% · SHEIN 34.9% · WEB 16.2% · Amazon 5.4% · TikTok 5.0%
+Neto %: SHEIN 37.6% · ML 31.0% · WEB 17.5% · TikTok 8.0% · Amazon 5.9%
+Bubble chart: `const maxX = 300000, minY = 8.5, maxY = 20;`

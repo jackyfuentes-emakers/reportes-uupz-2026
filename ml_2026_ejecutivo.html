@@ -91,10 +91,10 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
     <div class="hdr-sub">Semanas 10–21 · Marzo–Mayo 2026 · Cuentas: ML UUPZ + ML EMAKERS</div>
   </div>
   <div class="hdr-badges">
-    <span class="badge">SEM 10–21</span>
+    <span class="badge">SEM 10–22</span>
     <span class="badge">Mar–May 2026</span>
     <span class="badge-g badge">2 cuentas activas</span>
-    <span class="badge" style="background:#dcfce7;color:#15803d;border-color:#bbf7d0">▲ +36.9% YoY</span>
+    <span class="badge" style="background:#dcfce7;color:#15803d;border-color:#bbf7d0">▲ +48.4% YoY</span>
     <a href="global_2026_ejecutivo.html" style="font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;background:#f8faff;color:#4338ca;border:1.5px solid #c7d2fe;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:opacity .15s" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'" title="Ver reporte global">🌐 Ver Global</a>
   </div>
 </div>
@@ -103,9 +103,9 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
 <div class="kpi-row">
   <div class="kpi">
     <div class="kpi-l">Pedidos (paquetes)</div>
-    <div class="kpi-v">4,734</div>
+    <div class="kpi-v">5,118</div>
     <div class="kpi-s">Transacciones Mar–May</div>
-    <div class="kpi-t">~50.9 vasos por paquete</div>
+    <div class="kpi-t">~51.1 vasos por paquete</div>
   </div>
   <div class="kpi" style="border-top-color:var(--red)">
     <div class="kpi-l">Ticket promedio</div>
@@ -115,14 +115,14 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
   </div>
   <div class="kpi" style="border-top-color:var(--purple)">
     <div class="kpi-l">Total vasos</div>
-    <div class="kpi-v">241,322</div>
+    <div class="kpi-v">261,421</div>
     <div class="kpi-s">Acumulado 3 meses</div>
-    <div class="kpi-td">▼ Mayo vs Marzo: −1.8%</div>
+    <div class="kpi-td">▲ Mayo vs Marzo: +24.4%</div>
   </div>
   <div class="kpi" style="border-top-color:var(--blue)">
     <div class="kpi-l">Ventas (brutas)</div>
-    <div class="kpi-v">$2.55M</div>
-    <div class="kpi-s">~$2,547,761 MXN</div>
+    <div class="kpi-v">$2.49M</div>
+    <div class="kpi-s">~$2,488,728 MXN</div>
     <div class="kpi-t">▲ Abr vs Marzo: +14.8%</div>
   </div>
   <div class="kpi" style="border-top-color:var(--amber)">
@@ -176,7 +176,7 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
       <tbody>
         <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>1,477</td><td>$537</td><td style="color:var(--muted);font-size:10px">—</td><td>76,620</td><td>$792,386</td><td>$9.48</td></tr>
         <tr><td><span class="dot" style="background:var(--ml)"></span>Abril</td><td>1,688</td><td>$539</td><td class="mom-up">▲ +16.8%</td><td>89,470</td><td>$909,684</td><td>$9.56</td></tr>
-        <tr><td><span class="dot" style="background:var(--purple)"></span>Mayo</td><td>1,569</td><td>$539</td><td class="mom-dn">▼ −15.9%</td><td>75,232</td><td>$845,691</td><td style="color:var(--muted)">~$9.52*</td></tr>
+        <tr><td><span class="dot" style="background:var(--purple)"></span>Mayo</td><td>1,569</td><td>$539</td><td class="mom-dn">▲ +6.5%</td><td>75,232</td><td>$845,691</td><td style="color:var(--muted)">~$9.52*</td></tr>
         <tr class="tr"><td>Total general</td><td>4,734</td><td>$538</td><td></td><td>241,322</td><td>$2,547,761</td><td>~$9.52</td></tr>
       </tbody>
     </table>
@@ -210,7 +210,7 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
       </tr>
       <tr class="tr">
         <td>Total ML</td>
-        <td>1,477</td><td>76,620</td><td>1,688</td><td>89,470</td><td>1,569</td><td>75,232</td><td><strong>241,322</strong></td><td>100%</td>
+        <td>1,477</td><td>76,620</td><td>1,688</td><td>89,470</td><td>1,953</td><td>95,331</td><td><strong>241,322</strong></td><td>100%</td>
       </tr>
     </tbody>
   </table>
@@ -271,23 +271,23 @@ function roundRect(ctx, x, y, w, h, r) {
 }
 
 // ── DATA ──────────────────────────────────────────────
-const SEM_VASOS   = [21261,16622,15461,16036,13403,18113,24032,25198,29278,23839,19214,17133];
-const SEM_PEDIDOS = [394,  339,  307,  272,  274,  330,  459,  489,  556,  502,  434,  342];
-const SEM_LABELS  = ['S10','S11','S12','S13','S14','S15','S16','S17','S18','S19','S20','S21'];
+const SEM_VASOS   = [21261,16622,15461,16036,13403,18113,24032,25198,29278,23804,19214,17079,19389];
+const SEM_PEDIDOS = [394,  339,  307,  272,  274,  330,  459,  489,  592,  627,  570,  474,  474];
+const SEM_LABELS  = ['S10','S11','S12','S13','S14','S15','S16','S17','S18','S19','S20','S21','S22'];
 const MES_COLORS = ['#94a3b8','#3483fa','#9333ea'];
 const MES_RANGES = [[0,3],[3,7],[7,12]]; // indices por mes
 
 const DOW = [
-  {d:'Mar',v:788},{d:'Lun',v:782},{d:'Mié',v:717},
-  {d:'Vie',v:653},{d:'Jue',v:645},{d:'Sáb',v:586},{d:'Dom',v:563}
+  {d:'Mar',v:955},{d:'Lun',v:942},{d:'Mié',v:853},
+  {d:'Jue',v:764},{d:'Vie',v:761},{d:'Dom',v:700},{d:'Sáb',v:695}
 ];
 
 const TOP5_MAYO = [
-  {rank:1,modelo:'STAR',  cap:'16OZ',vasos:25388,pct:33.7,color:'#3483fa'},
-  {rank:2,modelo:'SUN',   cap:'24OZ',vasos:19331,pct:25.7,color:'#f59e0b'},
-  {rank:3,modelo:'SUN SLIM',cap:'16OZ',vasos:19330,pct:25.7,color:'#10b981'},
-  {rank:4,modelo:'SUN SLIM',cap:'12OZ',vasos:4388, pct:5.8, color:'#8b5cf6'},
-  {rank:5,modelo:'STELLAR',cap:'34OZ',vasos:1640, pct:2.2, color:'#e11d48'},
+  {rank:1,modelo:'STAR',  cap:'16OZ',vasos:32590,pct:34.2,color:'#3483fa'},
+  {rank:2,modelo:'SUN',   cap:'24OZ',vasos:25158,pct:26.4,color:'#f59e0b'},
+  {rank:3,modelo:'SUN SLIM',cap:'16OZ',vasos:23340,pct:24.5,color:'#10b981'},
+  {rank:4,modelo:'SUN SLIM',cap:'12OZ',vasos:5872, pct:6.2, color:'#8b5cf6'},
+  {rank:5,modelo:'STAR',   cap:'12OZ',vasos:2370, pct:2.5, color:'#e11d48'},
 ];
 
 const COLOR_CAP = {
@@ -304,10 +304,10 @@ const COLOR_CAP = {
 const YOY = {
   meses: ['Marzo','Abril','Mayo'],
   v2025: [34645, 66344, 75229],
-  v2026: [76620, 89470, 75232],
+  v2026: [76620, 89470, 95331],
 };
 
-const MES_VASOS = [76620, 89470, 75232];
+const MES_VASOS = [76620, 89470, 95331];
 
 // ── CHART 1: SEMANAL ──────────────────────────────────
 (function() {
