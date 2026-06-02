@@ -275,7 +275,7 @@ const SEM_VASOS   = [21261,16622,15461,16036,13403,18113,24032,25198,29278,23804
 const SEM_PEDIDOS = [394,  339,  307,  272,  274,  330,  459,  489,  592,  627,  570,  474,  474];
 const SEM_LABELS  = ['S10','S11','S12','S13','S14','S15','S16','S17','S18','S19','S20','S21','S22'];
 const MES_COLORS = ['#94a3b8','#3483fa','#9333ea'];
-const MES_RANGES = [[0,3],[3,7],[7,12]]; // indices por mes
+const MES_RANGES = [[0,4],[4,9],[9,13]]; // indices por mes (13 semanas)
 
 const DOW = [
   {d:'Mar',v:955},{d:'Lun',v:942},{d:'Mié',v:853},
@@ -330,7 +330,7 @@ const MES_VASOS = [76620, 89470, 95331];
   });
 
   SEM_VASOS.forEach((v,i)=>{
-    const x = PAD.l + i*(cW/12) + (cW/12 - bW)/2;
+    const x = PAD.l + i*(cW/SEM_VASOS.length) + (cW/SEM_VASOS.length - bW)/2;
     const bH = (v/max)*cH;
     const mesIdx = MES_RANGES.findIndex(([a,b])=>i>=a&&i<b);
     ctx.fillStyle = MES_COLORS[mesIdx]||'#94a3b8';
