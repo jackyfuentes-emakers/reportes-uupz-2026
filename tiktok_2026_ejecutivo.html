@@ -136,7 +136,7 @@ canvas{display:block;width:100%!important}
     <div class="kpi-l">Ticket promedio</div>
     <div class="kpi-v">$322</div>
     <div class="kpi-s">MXN por pedido único</div>
-    <div class="kpi-t" style="color:var(--muted)">▼ Mayo $309 vs Marzo $344</div>
+    <div class="kpi-t" style="color:var(--muted)">▼ Mayo $317 vs Marzo $344</div>
   </div>
   <div class="kpi" style="border-top-color:var(--purple)">
     <div class="kpi-l">Total vasos</div>
@@ -148,7 +148,7 @@ canvas{display:block;width:100%!important}
     <div class="kpi-l">Ventas (sin IVA)</div>
     <div class="kpi-v">$640K</div>
     <div class="kpi-s">$640,130 MXN</div>
-    <div class="kpi-t">▲ Abr $246K peak · May $181K</div>
+    <div class="kpi-t">▲ Abr $246K peak · May $223K</div>
   </div>
   <div class="kpi" style="border-top-color:var(--amber)">
     <div class="kpi-l">$/Vaso neto</div>
@@ -162,7 +162,7 @@ canvas{display:block;width:100%!important}
 <div class="g2">
   <div class="card">
     <div class="card-t">
-      <span class="ct-dot"></span>Vasos semanales — SEM 10 al SEM 21
+      <span class="ct-dot"></span>Vasos semanales — SEM 10 al SEM 22
       <span style="margin-left:auto;display:flex;gap:10px;font-size:11px">
         <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#94a3b8;border-radius:2px;display:inline-block"></span>Marzo</span>
         <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#2d2d2d;border-radius:2px;display:inline-block"></span>Abril</span>
@@ -204,9 +204,9 @@ canvas{display:block;width:100%!important}
         <th>Mes</th><th>Ped. únicos</th><th>Ticket prom.</th><th>MoM vasos</th><th>Vasos</th><th>$ Sin IVA</th><th>$/Vaso neto</th>
       </tr></thead>
       <tbody>
-        <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>580</td><td>$344</td><td style="color:var(--muted);font-size:10px">—</td><td>9,116</td><td>$171,749</td><td>$18.84</td></tr>
-        <tr><td><span class="dot" style="background:#2d2d2d"></span>Abril</td><td>893</td><td>$319</td><td class="mom-up">▲ 47.1%</td><td>13,411</td><td>$245,496</td><td>$18.31</td></tr>
-        <tr><td><span class="dot" style="background:#9333ea"></span>Mayo</td><td>816</td><td>$273</td><td class="mom-dn">▼ 10.1%</td><td>12,283</td><td>$222,886</td><td>$18.00</td></tr>
+        <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>580</td><td>$344</td><td style="color:var(--muted);font-size:10px">—</td><td>9,126</td><td>$171,749</td><td>$18.81</td></tr>
+        <tr><td><span class="dot" style="background:#2d2d2d"></span>Abril</td><td>893</td><td>$319</td><td class="mom-up">▲ 47.0%</td><td>13,411</td><td>$245,496</td><td>$18.31</td></tr>
+        <tr><td><span class="dot" style="background:#9333ea"></span>Mayo</td><td>816</td><td>$273</td><td class="mom-dn">▼ 8.4%</td><td>12,283</td><td>$222,886</td><td>$18.00</td></tr>
         <tr class="tr"><td>Total general</td><td>2,289</td><td>$280</td><td></td><td>34,820</td><td>$640,131</td><td>$18.38</td></tr>
       </tbody>
     </table>
@@ -233,10 +233,10 @@ canvas{display:block;width:100%!important}
         <th>Mes</th><th>2025 vasos</th><th>2026 vasos</th><th>Crec. YoY</th>
       </tr></thead>
       <tbody>
-        <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>15</td><td>9,116</td><td class="yoy-nd">▲ Canal nuevo</td></tr>
+        <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>15</td><td>9,126</td><td class="yoy-nd">▲ Canal nuevo</td></tr>
         <tr><td><span class="dot" style="background:#2d2d2d"></span>Abril</td><td>604</td><td>13,411</td><td class="yoy-up">▲ +2,121%</td></tr>
         <tr><td><span class="dot" style="background:#9333ea"></span>Mayo</td><td>1,247</td><td>12,283</td><td class="yoy-up">▲ +885%</td></tr>
-        <tr class="tr"><td>Total Mzo–May</td><td>1,866</td><td>32,656</td><td class="yoy-up" style="color:var(--green)!important">▲ +1,650%</td></tr>
+        <tr class="tr"><td>Total Mzo–May</td><td>1,866</td><td>34,820</td><td class="yoy-up" style="color:var(--green)!important">▲ +1,766%</td></tr>
       </tbody>
     </table>
     <canvas id="cYoy" style="display:block;width:100%"></canvas>
@@ -411,12 +411,12 @@ function drawStackedBar(canvasId, {labels, datasets, height=260}){
 //  DATA
 // ══════════════════════════════════════════════════════
 const SEMS  = ['SEM 10','SEM 11','SEM 12','SEM 13','SEM 14','SEM 15','SEM 16','SEM 17','SEM 18','SEM 19','SEM 20','SEM 21','SEM 22'];
-const SEM_V = [1566,1372,2266,2476,2939,3458,4006,2962,2056,4666,1416,2719,2064];
+const SEM_V = [1566,1372,2266,2476,2949,3458,4006,2962,2056,4656,2204,2719,2064];
 const SEM_P = [95,89,144,163,186,236,251,203,144,310,148,183,132];
 const SEM_C = ['#94a3b8','#94a3b8','#94a3b8','#94a3b8','#2d2d2d','#2d2d2d','#2d2d2d','#2d2d2d','#2d2d2d','#9333ea','#9333ea','#9333ea','#9333ea'];
 
 const MESES = ['Marzo','Abril','Mayo'];
-const MES_V = [8874,13663,12283];
+const MES_V = [9126,13411,12283];
 const MES_C = ['#94a3b8','#2d2d2d','#9333ea'];
 
 // ── Render semanas
@@ -546,7 +546,7 @@ drawStackedBar('cModCap', {
 
   const meses   = ['Marzo','Abril','Mayo'];
   const v2025   = [15, 604, 1247];
-  const v2026   = [8874, 13663, 12283];
+  const v2026   = [9126, 13411, 12283];
   const c2025   = '#cbd5e1';
   const c2026   = ['#94a3b8','#2d2d2d','#9333ea'];
   const padL=42, padR=12, padT=20, padB=40;

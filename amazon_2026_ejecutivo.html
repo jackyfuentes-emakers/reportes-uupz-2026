@@ -136,7 +136,7 @@ canvas{display:block;width:100%!important}
     <div class="kpi-l">$/Vaso neto</div>
     <div class="kpi-v">~$13.10</div>
     <div class="kpi-s">MXN por unidad · neto Sin IVA + fees</div>
-    <div class="kpi-t">Mar $12.21 · Abr $13.56 · May ~$13.71*</div>
+    <div class="kpi-t">Mar $13.10 · Abr $13.10 · May $13.10</div>
   </div>
 </div>
 
@@ -144,7 +144,7 @@ canvas{display:block;width:100%!important}
 <div class="g2">
   <div class="card">
     <div class="card-t">
-      <span class="ct-dot"></span>Vasos semanales — SEM 10 al SEM 21
+      <span class="ct-dot"></span>Vasos semanales — SEM 10 al SEM 22
       <span style="margin-left:auto;display:flex;gap:10px;font-size:11px">
         <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#94a3b8;border-radius:2px;display:inline-block"></span>Marzo</span>
         <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:var(--orange);border-radius:2px;display:inline-block"></span>Abril</span>
@@ -165,7 +165,7 @@ canvas{display:block;width:100%!important}
 <div class="top5-grid">
   <div id="top5Grid"></div>
   <div class="card">
-    <div class="card-t"><span class="ct-dot" style="background:var(--purple)"></span>Top 10 colores por capacidad · SEM 18–21 (últimas 4 semanas)</div>
+    <div class="card-t"><span class="ct-dot" style="background:var(--purple)"></span>Top 10 colores por capacidad · SEM 19–22 (últimas 4 semanas)</div>
     <canvas id="cColores" style="display:block;width:100%"></canvas>
   </div>
 </div>
@@ -177,19 +177,17 @@ canvas{display:block;width:100%!important}
     <div class="card-t"><span class="ct-dot" style="background:var(--blue)"></span>Pedidos · Vasos · Ventas por mes</div>
     <table class="st">
       <thead><tr>
-        <th>Mes</th><th>Ped. únicos</th><th>Ticket prom.</th><th>MoM vasos</th><th>Vasos</th><th>$ Bruto</th><th>$/Vaso neto</th>
+        <th>Mes</th><th>Ped. únicos</th><th>Ticket prom.</th><th>MoM vasos</th><th>Vasos</th><th>$ Neto</th><th>$/Vaso neto</th>
       </tr></thead>
       <tbody>
-        <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>429</td><td>$756</td><td style="color:var(--muted);font-size:10px">—</td><td>12,500</td><td>$324,322</td><td>$12.21</td></tr>
-        <tr><td><span class="dot" style="background:var(--orange)"></span>Abril</td><td>427</td><td>$705</td><td class="mom-dn">▼ −6.4%</td><td>11,700</td><td>$301,164</td><td>$13.56</td></tr>
+        <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>585</td><td>$280</td><td style="color:var(--muted);font-size:10px">—</td><td>12,500</td><td>$163,750</td><td>$13.10</td></tr>
+        <tr><td><span class="dot" style="background:var(--orange)"></span>Abril</td><td>566</td><td>$271</td><td class="mom-dn">▼ −6.4%</td><td>11,700</td><td>$153,270</td><td>$13.10</td></tr>
         <tr><td><span class="dot" style="background:var(--purple)"></span>Mayo</td><td>614</td><td>$259</td><td class="mom-up">▲ +3.8%</td><td>12,150</td><td>$159,165</td><td>$13.10</td></tr>
-        <tr class="tr"><td>Total general</td><td>1,210</td><td>$727</td><td></td><td>33,740</td><td>$879,175</td><td>~$13.10</td></tr>
+        <tr class="tr"><td>Total general</td><td>1,765</td><td>$270</td><td></td><td>36,350</td><td>$476,185</td><td>$13.10</td></tr>
       </tbody>
     </table>
     <p style="font-size:10px;color:var(--muted);margin-top:8px;padding-top:6px;border-top:1px solid #f1f5f9">
-      * $/Vaso neto = ingresos Sin IVA después de comisión + tarifas Amazon. Mar y Abr confirmados desde hoja DESGLOSE.
-      Mayo estimado con promedio global (~$13.71/vaso) — se actualizará al liquidarse.
-      Ticket prom. = precio bruto al cliente (referencia de mercado).
+      $/Vaso neto = PV fijo $13.10 (neto sin IVA después de comisión + tarifas Amazon). Pedidos y vasos desde pivot VENTAS.
     </p>
   </div>
   <div class="card">
@@ -214,7 +212,7 @@ canvas{display:block;width:100%!important}
         <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>11,765</td><td>12,500</td><td class="yoy-up">▲ +6.3%</td></tr>
         <tr><td><span class="dot" style="background:var(--orange)"></span>Abril</td><td>14,840</td><td>11,700</td><td class="yoy-dn">▼ −21.1%</td></tr>
         <tr><td><span class="dot" style="background:var(--purple)"></span>Mayo</td><td>16,380</td><td>12,150</td><td class="yoy-dn">▼ −25.8%</td></tr>
-        <tr class="tr"><td>Total Mzo–May</td><td>42,985</td><td>33,740</td><td class="yoy-dn" style="color:var(--red)!important">▼ −21.5%</td></tr>
+        <tr class="tr"><td>Total Mzo–May</td><td>42,985</td><td>36,350</td><td class="yoy-dn" style="color:var(--red)!important">▼ −15.4%</td></tr>
       </tbody>
     </table>
     <canvas id="cYoy" style="display:block;width:100%"></canvas>
@@ -429,7 +427,7 @@ grid.innerHTML=`
   ${rows5}
 </div>`;
 
-// ══ COLORES × CAPACIDAD (SEM 18–21) ══════════════════
+// ══ COLORES × CAPACIDAD (SEM 19–22) ══════════════════
 const COLOR_CAP={
   labels:['NG','COMB','TSP/GTR','RS/PST','BG','MD/PST','TSP','AZ/CIE','VD/MNT','AZ/PST'],
   datasets:[

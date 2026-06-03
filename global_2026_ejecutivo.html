@@ -144,7 +144,7 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
     <div class="kpi-l">Total vasos</div>
     <div class="kpi-v">674,383</div>
     <div class="kpi-s">Acumulado 3 meses · 5 canales</div>
-    <div class="kpi-t" style="color:var(--muted)">ML 38.5% · SHEIN 34.9% · WEB 16.2% · Amz+TT 10.4%</div>
+    <div class="kpi-t" style="color:var(--muted)">ML 38.8% · SHEIN 34.6% · WEB 16.1% · Amz+TT 10.5%</div>
   </div>
   <div class="kpi" style="border-top-color:var(--blue)">
     <div class="kpi-l">Ingresos netos</div>
@@ -156,7 +156,7 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
     <div class="kpi-l">$/Vaso neto pond.</div>
     <div class="kpi-v">$11.83</div>
     <div class="kpi-s">Promedio ponderado por volumen</div>
-    <div class="kpi-t">TikTok $18.84 · Amz $13.10 · SHEIN $12.73 · WEB $12.79 · ML $9.52</div>
+    <div class="kpi-t">TikTok $18.38 · Amz $13.10 · SHEIN $12.73 · WEB $12.90 · ML $9.52</div>
   </div>
   <div class="kpi" style="border-top-color:var(--ml)">
     <div class="kpi-l">Canal líder · Volumen 2026</div>
@@ -321,6 +321,19 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
   </div>
 </div>
 
+<!-- TENDENCIA SEMANAL HISTÓRICA -->
+<div class="div"><div class="div-l"></div><span class="div-s">Tendencia semanal · 2025 vs 2026</span><div class="div-l"></div></div>
+<div class="card" style="margin-bottom:18px">
+  <div class="card-t">
+    <span class="ct-dot" style="background:var(--purple)"></span>Total vasos por semana — Red UUPZ (SHEIN · Amazon · ML · WEB)
+    <div class="legend" style="margin-left:auto;display:flex;gap:14px">
+      <div class="leg-item"><div style="width:28px;height:3px;background:#3b82f6;border-radius:2px;display:inline-block;vertical-align:middle;margin-right:4px"></div>2025</div>
+      <div class="leg-item"><div style="width:28px;height:3px;background:#f97316;border-radius:2px;display:inline-block;vertical-align:middle;margin-right:4px"></div>2026 (hasta SEM 22)</div>
+    </div>
+  </div>
+  <canvas id="cTendencia" style="width:100%"></canvas>
+</div>
+
 </div><!-- /page -->
 
 <script>
@@ -338,11 +351,11 @@ const PLAT = [
     pedidos:5118,  vasos:261421, neto:2488728, pvNeto:9.52,  yoy:48.4,  momMayo:6.5,
     vasos2025:[34645,66344,75229], vasos2026:[76620,89470,95331] },
   { id:'tiktok', label:'TikTok',        color:'#2d2d2d', active:true,
-    pedidos:2284,  vasos:33966,  neto:640130,  pvNeto:18.84, yoy:1720,  momMayo:-29.5,
-    vasos2025:[15,604,1247],       vasos2026:[7680,15421,10865] },
+    pedidos:2289,  vasos:34820,  neto:640131,  pvNeto:18.38, yoy:1766,  momMayo:-8.4,
+    vasos2025:[15,604,1247],       vasos2026:[9126,13411,12283] },
   { id:'web',    label:'WEB',           color:'#6366f1', active:true,
-    pedidos:1126,  vasos:109688, neto:1402905, pvNeto:12.79, yoy:-9.7,  momMayo:38.0,
-    vasos2025:[38653,62567,48735], vasos2026:[33798,31884,44006] },
+    pedidos:1126,  vasos:108716, neto:1402900, pvNeto:12.90, yoy:-27.5, momMayo:35.0,
+    vasos2025:[38653,62567,48735], vasos2026:[33800,31885,43031] },
 ];
 const ACTIVE = PLAT.filter(p=>p.active);
 const MESES_S = ['Mar','Abr','May'];
@@ -594,6 +607,161 @@ drawStackedH('cPartNeto',  ACTIVE.map(p=>({label:p.label, v:p.neto,  color:p.col
     ctx.fillStyle='#6b7280'; ctx.font='9px sans-serif';
     ctx.fillText((p.vasos/1000).toFixed(0)+'K vasos', bx, by+14);
   });
+})();
+
+// ── TENDENCIA SEMANAL 2025 vs 2026 ──────────────────────────────
+(function drawTendencia() {
+  // Datos 2025 (52 semanas) y 2026 (22 semanas: Ene SEM1–May SEM4)
+  // Fuente: CONCENTRADO.xlsx / VASOS X SEM (SHEIN+Amazon+ML+WEB)
+  // May SEM3 y SEM4 calculados desde plataformas individuales (SEM21+SEM22)
+  const DATA25 = [
+    13735,24639,27091,24565,22562, // ENERO
+    21698,20096,20398,22951,       // FEBRERO
+    22954,21507,20699,24409,       // MARZO
+    25582,31326,28495,38800,39741, // ABRIL
+    44037,54236,54143,53642,       // MAYO
+    72698,70544,74250,74963,       // JUNIO
+    76930,67013,63803,59006,59003, // JULIO
+    56959,65886,54790,51438,       // AGOSTO
+    54367,56823,57012,63529,       // SEPTIEMBRE
+    65640,73941,66544,55639,53600, // OCTUBRE
+    62147,75464,82953,74980,       // NOVIEMBRE
+    83314,75688,47585,27154        // DICIEMBRE
+  ];
+  const DATA26 = [
+    37327,54617,57971,54618,45675, // ENERO
+    48222,40844,40919,46224,       // FEBRERO
+    53288,44239,39881,42139,       // MARZO
+    40601,46618,58262,55219,61314, // ABRIL
+    63417,54564,48675,58204        // MAYO (SEM3+SEM4 desde plataformas)
+  ];
+
+  // Etiquetas: SEM x / MES (alineadas con 2025)
+  const LBLS = [
+    'S1','S2','S3','S4','S5',
+    'S1','S2','S3','S4',
+    'S1','S2','S3','S4',
+    'S1','S2','S3','S4','S5',
+    'S1','S2','S3','S4',
+    'S1','S2','S3','S4',
+    'S1','S2','S3','S4','S5',
+    'S1','S2','S3','S4',
+    'S1','S2','S3','S4',
+    'S1','S2','S3','S4','S5',
+    'S1','S2','S3','S4',
+    'S1','S2','S3','S4'
+  ];
+  const MES_GROUPS = [
+    {label:'ENE', start:0, count:5},
+    {label:'FEB', start:5, count:4},
+    {label:'MAR', start:9, count:4},
+    {label:'ABR', start:13, count:5},
+    {label:'MAY', start:18, count:4},
+    {label:'JUN', start:22, count:4},
+    {label:'JUL', start:26, count:5},
+    {label:'AGO', start:31, count:4},
+    {label:'SEP', start:35, count:4},
+    {label:'OCT', start:39, count:5},
+    {label:'NOV', start:44, count:4},
+    {label:'DIC', start:48, count:4}
+  ];
+
+  const n = DATA25.length;
+  const H = 260, PAD = {t:18, r:14, b:52, l:58};
+  const cv = document.getElementById('cTendencia');
+  if (!cv) return;
+  const dpr = window.devicePixelRatio || 1;
+  const W = cv.parentElement.clientWidth || 900;
+  cv.width = W * dpr; cv.height = H * dpr;
+  cv.style.height = H + 'px';
+  const ctx = cv.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  const cW = W - PAD.l - PAD.r;
+  const cH = H - PAD.t - PAD.b;
+  const maxV = Math.max(...DATA25, ...DATA26) * 1.08;
+  const xStep = cW / (n - 1);
+
+  function toX(i) { return PAD.l + i * xStep; }
+  function toY(v) { return PAD.t + cH - (v / maxV) * cH; }
+
+  // Fondo
+  ctx.fillStyle = '#f8faff';
+  ctx.fillRect(PAD.l, PAD.t, cW, cH);
+
+  // Grid horizontal
+  const ticks = 5;
+  ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1;
+  for (let t = 0; t <= ticks; t++) {
+    const y = PAD.t + (cH / ticks) * t;
+    ctx.beginPath(); ctx.moveTo(PAD.l, y); ctx.lineTo(PAD.l + cW, y); ctx.stroke();
+    const val = Math.round(maxV - (maxV / ticks) * t);
+    ctx.fillStyle = '#94a3b8'; ctx.font = '9px system-ui';
+    ctx.textAlign = 'right';
+    ctx.fillText((val/1000).toFixed(0)+'K', PAD.l - 4, y + 3);
+  }
+
+  // Separadores de mes (líneas verticales)
+  ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 0.8; ctx.setLineDash([3,3]);
+  MES_GROUPS.forEach(g => {
+    const x = toX(g.start);
+    ctx.beginPath(); ctx.moveTo(x, PAD.t); ctx.lineTo(x, PAD.t + cH); ctx.stroke();
+  });
+  ctx.setLineDash([]);
+
+  // Función para dibujar línea
+  function drawLine(data, color, dashed) {
+    ctx.strokeStyle = color; ctx.lineWidth = 2.2;
+    if (dashed) ctx.setLineDash([6,4]);
+    else ctx.setLineDash([]);
+    ctx.beginPath();
+    data.forEach((v, i) => {
+      if (v == null) return;
+      const x = toX(i), y = toY(v);
+      i === 0 || data[i-1] == null ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    ctx.setLineDash([]);
+    // Puntos
+    ctx.fillStyle = color;
+    data.forEach((v, i) => {
+      if (v == null) return;
+      ctx.beginPath();
+      ctx.arc(toX(i), toY(v), 3, 0, Math.PI*2);
+      ctx.fill();
+    });
+  }
+
+  // Alinear 2026 con 2025 (mismas posiciones x, solo hasta index 21)
+  const DATA26_FULL = DATA25.map((_, i) => i < DATA26.length ? DATA26[i] : null);
+
+  drawLine(DATA25, '#3b82f6', false);
+  drawLine(DATA26_FULL, '#f97316', false);
+
+  // Etiquetas SEM (eje X)
+  ctx.fillStyle = '#94a3b8'; ctx.font = '8px system-ui'; ctx.textAlign = 'center';
+  LBLS.forEach((lbl, i) => {
+    ctx.fillText(lbl, toX(i), PAD.t + cH + 11);
+  });
+
+  // Etiquetas de mes
+  ctx.fillStyle = '#475569'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+  MES_GROUPS.forEach(g => {
+    const xMid = toX(g.start + (g.count - 1) / 2);
+    ctx.fillText(g.label, xMid, PAD.t + cH + 26);
+    // Línea divisora debajo de sem labels
+    ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 0.8;
+    const xSep = toX(g.start) - xStep * 0.5;
+    ctx.beginPath(); ctx.moveTo(xSep, PAD.t + cH + 4); ctx.lineTo(xSep, PAD.t + cH + 29); ctx.stroke();
+  });
+
+  // Marker fin de datos 2026
+  const lastX = toX(DATA26.length - 1);
+  ctx.strokeStyle = '#f97316'; ctx.lineWidth = 1.5; ctx.setLineDash([4,3]);
+  ctx.beginPath(); ctx.moveTo(lastX, PAD.t); ctx.lineTo(lastX, PAD.t + cH); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#f97316'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('SEM 22', lastX, PAD.t - 4);
 })();
 </script>
 </body>
