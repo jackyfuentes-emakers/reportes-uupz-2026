@@ -162,7 +162,7 @@ canvas{display:block;width:100%!important}
 <div class="g2">
   <div class="card">
     <div class="card-t">
-      <span class="ct-dot"></span>Vasos semanales — SEM 10 al SEM 21
+      <span class="ct-dot"></span>Vasos semanales — SEM 10 al SEM 22
       <span style="margin-left:auto;display:flex;gap:10px;font-size:11px">
         <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#94a3b8;border-radius:2px;display:inline-block"></span>Marzo</span>
         <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#e11d48;border-radius:2px;display:inline-block"></span>Abril</span>
@@ -189,7 +189,7 @@ canvas{display:block;width:100%!important}
 <div class="top5-grid">
   <div id="top5Grid"></div>
   <div class="card">
-    <div class="card-t"><span class="ct-dot" style="background:var(--purple)"></span>Top 10 colores por capacidad · SEM 18–21 (últimas 4 semanas)</div>
+    <div class="card-t"><span class="ct-dot" style="background:var(--purple)"></span>Top 10 colores por capacidad · SEM 19–22 (últimas 4 semanas)</div>
     <canvas id="cColores" style="display:block;width:100%"></canvas>
   </div>
 </div>
@@ -492,15 +492,15 @@ DOW.forEach((d,i)=>{
 // ══════════════════════════════════════════════════════
 const ALL_MOD = [
   {nombre:'SUN',      cap:'24OZ', col:'#e11d48', mar:28130, abr:31030, may:44090},
-  {nombre:'SUN',      cap:'16OZ', col:'#f43f5e', mar:1910,  abr:2060,  may:2040},
+  {nombre:'SUN',      cap:'16OZ', col:'#f43f5e', mar:1910,  abr:2060,  may:2740},
   {nombre:'SUN SLIM', cap:'16OZ', col:'#9333ea', mar:14610, abr:14490, may:16740},
-  {nombre:'SUN SLIM', cap:'12OZ', col:'#a855f7', mar:13570, abr:12600, may:16740},
-  {nombre:'SUN SLIM', cap:'20OZ', col:'#c084fc', mar:3510,  abr:3540,  may:6050},
-  {nombre:'STAR',     cap:'16OZ', col:'#2563eb', mar:3090,  abr:3580,  may:4300},
-  {nombre:'STAR',     cap:'12OZ', col:'#60a5fa', mar:2200,  abr:2270,  may:1630},
+  {nombre:'SUN SLIM', cap:'12OZ', col:'#a855f7', mar:13570, abr:12600, may:16730},
+  {nombre:'SUN SLIM', cap:'20OZ', col:'#c084fc', mar:3510,  abr:3540,  may:7030},
+  {nombre:'STAR',     cap:'16OZ', col:'#2563eb', mar:3090,  abr:3580,  may:4990},
+  {nombre:'STAR',     cap:'12OZ', col:'#60a5fa', mar:2200,  abr:2270,  may:2440},
   {nombre:'STELLAR',  cap:'34OZ', col:'#d97706', mar:1460,  abr:1040,  may:1730},
-  {nombre:'SATURN',   cap:'12OZ', col:'#0891b2', mar:130,   abr:240,   may:170},
-  {nombre:'SATURN',   cap:'20OZ', col:'#22d3ee', mar:100,   abr:90,    may:150},
+  {nombre:'SATURN',   cap:'12OZ', col:'#0891b2', mar:130,   abr:240,   may:330},
+  {nombre:'SATURN',   cap:'20OZ', col:'#22d3ee', mar:100,   abr:90,    may:130},
   {nombre:'MOON',     cap:'16OZ', col:'#64748b', mar:20,    abr:0,     may:0},
 ];
 
@@ -545,7 +545,7 @@ grid.innerHTML = `
   ${rows5}
 </div>`;
 
-// ── TOP 10 COLORES × CAPACIDAD (SEM 18–21) ───────────
+// ── TOP 10 COLORES × CAPACIDAD (SEM 19–22) ───────────
 // Fuente: VENTAS SHEIN 2026.xlsx — hoja TABLAS
 const CAP_COLORS = {
   '12OZ':'#3b82f6',
@@ -555,13 +555,13 @@ const CAP_COLORS = {
   '34OZ':'#e11d48',
 };
 const COLOR_CAP = {
-  labels: ['RS/PST','NG','DR/GTRT','RJ','MD/PST','TSP','AZ/PST','TSP/GTR','AZ/CIE','BG'],
+  labels: ['NG','RS/PST','DR/GTRT','RJ','MD/PST','TSP','AZ/CIE','AZ/PST','BG','TSP/GTR'],
   datasets: [
-    {label:'12OZ', color:CAP_COLORS['12OZ'], values:[2710,1700,   0,1080,1420,   0,1930,  0,  0,2010]},
-    {label:'16OZ', color:CAP_COLORS['16OZ'], values:[2610,1890,   0,1850,1360,2450,1360,230,380, 940]},
-    {label:'20OZ', color:CAP_COLORS['20OZ'], values:[1320,3150,   0, 240, 270,   0,   0,  0,  0,   0]},
-    {label:'24OZ', color:CAP_COLORS['24OZ'], values:[3480,1900,5640,2260,1030,1480,   0,2160,2630,  0]},
-    {label:'34OZ', color:CAP_COLORS['34OZ'], values:[   0,   0,   0,   0,   0,   0,   0, 720, 140,  0]},
+    {label:'12OZ', color:CAP_COLORS['12OZ'], values:[2200,2790,   0,1060,1400,   0,   0,2050,2210,   0]},
+    {label:'16OZ', color:CAP_COLORS['16OZ'], values:[2550,2230,   0,1760,1370,2970, 470,1350,1110, 280]},
+    {label:'20OZ', color:CAP_COLORS['20OZ'], values:[3490,1340,   0, 240, 460,   0,   0,   0,   0,   0]},
+    {label:'24OZ', color:CAP_COLORS['24OZ'], values:[2030,3030,5620,2290,1070,1280,3010,   0,   0,2190]},
+    {label:'34OZ', color:CAP_COLORS['34OZ'], values:[   0,   0,   0,   0,   0,   0,   0,   0,   0, 770]},
   ]
 };
 

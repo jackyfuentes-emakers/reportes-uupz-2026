@@ -128,15 +128,15 @@ canvas{display:block;width:100%!important}
   </div>
   <div class="kpi" style="border-top-color:var(--blue)">
     <div class="kpi-l">Ventas (brutas)</div>
-    <div class="kpi-v">$476K</div>
-    <div class="kpi-s">$476,185 MXN</div>
+    <div class="kpi-v">$808K</div>
+    <div class="kpi-s">$808,062 MXN · ingresos post-comisión</div>
     <div class="kpi-td">▲ Mayo vs Marzo: +3.8%</div>
   </div>
   <div class="kpi" style="border-top-color:var(--amber)">
     <div class="kpi-l">$/Vaso neto</div>
-    <div class="kpi-v">~$13.10</div>
-    <div class="kpi-s">MXN por unidad · neto Sin IVA + fees</div>
-    <div class="kpi-t">Mar $13.10 · Abr $13.10 · May $13.10</div>
+    <div class="kpi-v">$19.16</div>
+    <div class="kpi-s">MXN por unidad · sin IVA · post-comisión</div>
+    <div class="kpi-t" style="color:var(--muted)">Fuente: PROMEDIO VENTA</div>
   </div>
 </div>
 
@@ -180,14 +180,14 @@ canvas{display:block;width:100%!important}
         <th>Mes</th><th>Ped. únicos</th><th>Ticket prom.</th><th>MoM vasos</th><th>Vasos</th><th>$ Neto</th><th>$/Vaso neto</th>
       </tr></thead>
       <tbody>
-        <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>585</td><td>$280</td><td style="color:var(--muted);font-size:10px">—</td><td>12,500</td><td>$163,750</td><td>$13.10</td></tr>
-        <tr><td><span class="dot" style="background:var(--orange)"></span>Abril</td><td>566</td><td>$271</td><td class="mom-dn">▼ −6.4%</td><td>11,700</td><td>$153,270</td><td>$13.10</td></tr>
-        <tr><td><span class="dot" style="background:var(--purple)"></span>Mayo</td><td>614</td><td>$259</td><td class="mom-up">▲ +3.8%</td><td>12,150</td><td>$159,165</td><td>$13.10</td></tr>
-        <tr class="tr"><td>Total general</td><td>1,765</td><td>$270</td><td></td><td>36,350</td><td>$476,185</td><td>$13.10</td></tr>
+        <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>585</td><td>$261</td><td style="color:var(--muted);font-size:10px">—</td><td>12,500</td><td>$284,596</td><td>$19.63</td></tr>
+        <tr><td><span class="dot" style="background:var(--orange)"></span>Abril</td><td>566</td><td>$280</td><td class="mom-dn">▼ −6.4%</td><td>11,700</td><td>$262,962</td><td>$19.38</td></tr>
+        <tr><td><span class="dot" style="background:var(--purple)"></span>Mayo</td><td>614</td><td>$259</td><td class="mom-up">▲ +3.8%</td><td>12,150</td><td>$260,503</td><td>$18.48</td></tr>
+        <tr class="tr"><td>Total general</td><td>1,765</td><td>$266</td><td></td><td>36,350</td><td>$808,062</td><td>$19.16</td></tr>
       </tbody>
     </table>
     <p style="font-size:10px;color:var(--muted);margin-top:8px;padding-top:6px;border-top:1px solid #f1f5f9">
-      $/Vaso neto = PV fijo $13.10 (neto sin IVA después de comisión + tarifas Amazon). Pedidos y vasos desde pivot VENTAS.
+      $ Ingresos = monto post-comisión Amazon. $/Vaso neto = Ingresos ÷ 1.16 ÷ vasos. Fuente: PROMEDIO VENTA.
     </p>
   </div>
   <div class="card">
@@ -379,16 +379,16 @@ DOW.forEach((d,i)=>{
 
 // ══ TOP 5 MAYO ════════════════════════════════════════
 const ALL_MOD=[
-  {nombre:'SUN',           cap:'24OZ', col:'#f97316', may:3380},
-  {nombre:'SUN SLIM',      cap:'12OZ', col:'#a855f7', may:2470},
-  {nombre:'STAR',          cap:'16OZ', col:'#2563eb', may:1260},
-  {nombre:'SUN SLIM',      cap:'16OZ', col:'#c084fc', may:590},
-  {nombre:'STELLAR',       cap:'34OZ', col:'#d97706', may:410},
-  {nombre:'SUN',           cap:'16OZ', col:'#fb923c', may:560},
-  {nombre:'STAR',          cap:'12OZ', col:'#60a5fa', may:340},
-  {nombre:'SUN SLIM MAG.', cap:'12OZ', col:'#f43f5e', may:320},
-  {nombre:'SUN SLIM',      cap:'20OZ', col:'#e879f9', may:130},
-  {nombre:'SATURN',        cap:'16OZ', col:'#0891b2', may:30},
+  {nombre:'SUN',           cap:'24OZ', col:'#f97316', may:4200},
+  {nombre:'SUN SLIM',      cap:'12OZ', col:'#a855f7', may:3310},
+  {nombre:'STAR',          cap:'16OZ', col:'#2563eb', may:1590},
+  {nombre:'SUN SLIM',      cap:'16OZ', col:'#c084fc', may:750},
+  {nombre:'STELLAR',       cap:'34OZ', col:'#d97706', may:460},
+  {nombre:'SUN',           cap:'16OZ', col:'#fb923c', may:670},
+  {nombre:'STAR',          cap:'12OZ', col:'#60a5fa', may:360},
+  {nombre:'SUN SLIM MAG.', cap:'12OZ', col:'#f43f5e', may:560},
+  {nombre:'SUN SLIM',      cap:'20OZ', col:'#e879f9', may:160},
+  {nombre:'SATURN',        cap:'16OZ', col:'#0891b2', may:40},
 ];
 const MAY_TOTAL=12150, MAY_DOT='#9333ea';
 const rankCls=['r1','r2','r3','r4','r5'];
@@ -429,13 +429,13 @@ grid.innerHTML=`
 
 // ══ COLORES × CAPACIDAD (SEM 19–22) ══════════════════
 const COLOR_CAP={
-  labels:['NG','COMB','TSP/GTR','RS/PST','BG','MD/PST','TSP','AZ/CIE','VD/MNT','AZ/PST'],
+  labels:['COMB','NG','TSP/GTR','BG','RS/PST','AZ/PST','MD/PST','VD/MNT','TSP','BL'],
   datasets:[
-    {label:'12OZ',color:'#3b82f6',values:[300,560,180,290,510,260,120, 30,  0,370]},
-    {label:'16OZ',color:'#8b5cf6',values:[480,280,510,270,250,130,370,  0,440, 60]},
-    {label:'20OZ',color:'#10b981',values:[ 30,170,  0, 40,  0, 20,  0,  0,  0,  0]},
-    {label:'24OZ',color:'#f59e0b',values:[240, 10,240,230,  0,170,  0,420,  0,  0]},
-    {label:'34OZ',color:'#e11d48',values:[  0,  0,  0,  0,  0,  0,  0,  0,  0,  0]},
+    {label:'12OZ',color:'#3b82f6',values:[460,190,  0,600,270,470,240,510,  0,  0]},
+    {label:'16OZ',color:'#8b5cf6',values:[390,510,190,290,300,100,120,  0,150,220]},
+    {label:'20OZ',color:'#10b981',values:[  0, 50,  0,  0, 40,  0, 20,  0,  0, 40]},
+    {label:'24OZ',color:'#f59e0b',values:[190,300,550,  0,230,  0,170,  0,310,170]},
+    {label:'34OZ',color:'#e11d48',values:[ 10,  0,270,  0,  0,  0,  0,  0,  0,  0]},
   ]
 };
 drawStackedBar('cColores',{labels:COLOR_CAP.labels,datasets:COLOR_CAP.datasets,height:260});

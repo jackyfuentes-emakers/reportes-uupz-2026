@@ -142,21 +142,21 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
   </div>
   <div class="kpi" style="border-top-color:var(--green)">
     <div class="kpi-l">Total vasos</div>
-    <div class="kpi-v">674,383</div>
+    <div class="kpi-v">678,063</div>
     <div class="kpi-s">Acumulado 3 meses · 5 canales</div>
-    <div class="kpi-t" style="color:var(--muted)">ML 38.8% · SHEIN 34.6% · WEB 16.1% · Amz+TT 10.5%</div>
+    <div class="kpi-t" style="color:var(--muted)">ML 38.6% · SHEIN 34.9% · WEB 16.0% · Amz+TT 10.5%</div>
   </div>
   <div class="kpi" style="border-top-color:var(--blue)">
     <div class="kpi-l">Ingresos netos</div>
-    <div class="kpi-v">$8.02M</div>
-    <div class="kpi-s">~$8,022,015 MXN sin IVA + fees</div>
-    <div class="kpi-t" style="color:var(--muted)">SHEIN $3.01M · ML $2.49M · WEB $1.40M · TT+Amz $1.12M</div>
+    <div class="kpi-v">$9.14M</div>
+    <div class="kpi-s">~$9,140,626 MXN</div>
+    <div class="kpi-t" style="color:var(--muted)">ML $3.02M · SHEIN $3.01M · WEB $1.65M · Amz $808K · TT $640K</div>
   </div>
   <div class="kpi" style="border-top-color:var(--amber)">
     <div class="kpi-l">$/Vaso neto pond.</div>
-    <div class="kpi-v">$11.83</div>
+    <div class="kpi-v">$13.48</div>
     <div class="kpi-s">Promedio ponderado por volumen</div>
-    <div class="kpi-t">TikTok $18.38 · Amz $13.10 · SHEIN $12.73 · WEB $12.90 · ML $9.52</div>
+    <div class="kpi-t">TikTok $18.38 · WEB $15.22 · Amz $19.16 · SHEIN $12.73 · ML $9.97</div>
   </div>
   <div class="kpi" style="border-top-color:var(--ml)">
     <div class="kpi-l">Canal líder · Volumen 2026</div>
@@ -244,8 +244,8 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
         <td>1,765</td>
         <td>36,350</td>
         <td>5.4%</td>
-        <td>~$476,185</td>
-        <td>~$13.10</td>
+        <td>$808,062</td>
+        <td>$19.16</td>
         <td class="up">▲ +3.8%</td>
         <td class="dn">▼ −15.4%</td>
         <td><span class="tag tag-dn">↓ A la baja</span></td>
@@ -255,8 +255,8 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
         <td>5,118</td>
         <td>261,421</td>
         <td>38.6%</td>
-        <td>~$2,488,728</td>
-        <td>~$9.52</td>
+        <td>$3,023,919</td>
+        <td>$9.97</td>
         <td class="up">▲ +6.5%</td>
         <td class="up">▲ +48.4%</td>
         <td><span class="tag tag-up">↑ Creciendo</span></td>
@@ -275,10 +275,10 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
       <tr>
         <td><span class="dot" style="background:var(--web)"></span><strong>WEB</strong></td>
         <td>1,126</td>
-        <td>108,716</td>
+        <td>108,712</td>
         <td>16.0%</td>
-        <td>~$1,402,900</td>
-        <td>~$12.90</td>
+        <td>$1,654,443</td>
+        <td>$15.22</td>
         <td class="up">▲ +35.0%</td>
         <td class="dn">▼ −27.5%</td>
         <td><span class="tag tag-dn">↓ A la baja</span></td>
@@ -286,17 +286,17 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
       <tr class="total">
         <td>Total general (5/5)</td>
         <td>26,973</td>
-        <td>678,067</td>
+        <td>678,063</td>
         <td>100%</td>
-        <td>~$8,022,019</td>
-        <td>~$11.83</td>
+        <td>~$9,140,626</td>
+        <td>~$13.48</td>
         <td>—</td>
         <td>—</td>
         <td>—</td>
       </tr>
     </tbody>
   </table>
-  <p class="note">Porcentajes calculados sobre los 5 canales. Ingresos netos Amazon y ML para Mayo son estimados. TikTok sin comisión de plataforma (neto = bruto ÷ 1.16). WEB incluye comisión Shopify 15.21% + IVA. WEB registra pedidos en bulto (~97 vasos/pedido) — canal mayoreo.</p>
+  <p class="note">Porcentajes calculados sobre los 5 canales. Amazon e ML: ingresos post-comisión (fuente: PROMEDIO VENTA / PRECIO DE VENTA). TikTok sin comisión (neto = bruto ÷ 1.16). WEB: venta neta sin IVA (fuente: TABLAS WEB). SHEIN: $ sin IVA reportado. WEB registra pedidos en bulto (~97 vasos/pedido).</p>
 </div>
 
 <!-- ═══ SECCIÓN 4: RENTABILIDAD + YOY ═══ -->
@@ -345,17 +345,17 @@ const PLAT = [
     pedidos:16675, vasos:236760, neto:3014071, pvNeto:12.73, yoy:207,   momMayo:36.4,
     vasos2025:[4610,22030,50440],   vasos2026:[68740,71060,96960] },
   { id:'amazon', label:'Amazon',        color:'#f97316', active:true,
-    pedidos:1765,  vasos:36350,  neto:476185,  pvNeto:13.10, yoy:-15.4, momMayo:3.8,
+    pedidos:1765,  vasos:36350,  neto:808062,  pvNeto:19.16, yoy:-15.4, momMayo:3.8,
     vasos2025:[11765,14840,16380], vasos2026:[12500,11700,12150] },
   { id:'ml',     label:'Mercado Libre', color:'#3483fa', active:true,
-    pedidos:5118,  vasos:261421, neto:2488728, pvNeto:9.52,  yoy:48.4,  momMayo:6.5,
+    pedidos:5118,  vasos:261421, neto:3023919, pvNeto:9.97,  yoy:48.4,  momMayo:6.5,
     vasos2025:[34645,66344,75229], vasos2026:[76620,89470,95331] },
   { id:'tiktok', label:'TikTok',        color:'#2d2d2d', active:true,
     pedidos:2289,  vasos:34820,  neto:640131,  pvNeto:18.38, yoy:1766,  momMayo:-8.4,
     vasos2025:[15,604,1247],       vasos2026:[9126,13411,12283] },
   { id:'web',    label:'WEB',           color:'#6366f1', active:true,
-    pedidos:1126,  vasos:108716, neto:1402900, pvNeto:12.90, yoy:-27.5, momMayo:35.0,
-    vasos2025:[38653,62567,48735], vasos2026:[33800,31885,43031] },
+    pedidos:1126,  vasos:108712, neto:1654443, pvNeto:15.22, yoy:-27.5, momMayo:35.0,
+    vasos2025:[38653,62567,48735], vasos2026:[33798,31884,43030] },
 ];
 const ACTIVE = PLAT.filter(p=>p.active);
 const MESES_S = ['Mar','Abr','May'];

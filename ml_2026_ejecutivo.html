@@ -121,15 +121,15 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
   </div>
   <div class="kpi" style="border-top-color:var(--blue)">
     <div class="kpi-l">Ventas (brutas)</div>
-    <div class="kpi-v">$2.49M</div>
-    <div class="kpi-s">~$2,488,728 MXN</div>
+    <div class="kpi-v">$3.02M</div>
+    <div class="kpi-s">$3,023,919 MXN · ingresos post-comisión</div>
     <div class="kpi-t">▲ Abr vs Marzo: +14.8%</div>
   </div>
   <div class="kpi" style="border-top-color:var(--amber)">
     <div class="kpi-l">$/Vaso neto</div>
-    <div class="kpi-v">$9.52</div>
+    <div class="kpi-v">$9.97</div>
     <div class="kpi-s">MXN por unidad · neto Sin IVA</div>
-    <div class="kpi-t">Mar $9.48 · Abr $9.56 · May ~$9.52*</div>
+    <div class="kpi-t" style="color:var(--muted)">Fuente: PRECIO DE VENTA · Ingresos ÷ 1.16</div>
   </div>
 </div>
 
@@ -159,7 +159,7 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
 <div class="top5-grid">
   <div id="top5Grid"></div>
   <div class="card">
-    <div class="card-t"><span class="ct-dot" style="background:var(--purple)"></span>Top 10 colores por capacidad · SEM 18–21 (89,464 vasos)</div>
+    <div class="card-t"><span class="ct-dot" style="background:var(--purple)"></span>Top 10 colores por capacidad · SEM 19–22 (79,486 vasos)</div>
     <canvas id="cColores" style="display:block;width:100%"></canvas>
   </div>
 </div>
@@ -174,15 +174,14 @@ body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSys
         <th>Mes</th><th>Paquetes</th><th>Ticket prom.</th><th>MoM vasos</th><th>Vasos</th><th>$ Bruto</th><th>$/Vaso neto</th>
       </tr></thead>
       <tbody>
-        <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>1,477</td><td>$537</td><td style="color:var(--muted);font-size:10px">—</td><td>76,620</td><td>$792,386</td><td>$9.48</td></tr>
-        <tr><td><span class="dot" style="background:var(--ml)"></span>Abril</td><td>1,688</td><td>$539</td><td class="mom-up">▲ +16.8%</td><td>89,470</td><td>$909,684</td><td>$9.56</td></tr>
-        <tr><td><span class="dot" style="background:var(--purple)"></span>Mayo</td><td>1,953</td><td>$539</td><td class="mom-up">▲ +6.5%</td><td>95,331</td><td>$907,551</td><td style="color:var(--muted)">~$9.52*</td></tr>
-        <tr class="tr"><td>Total general</td><td>5,118</td><td>$538</td><td></td><td>261,421</td><td>$2,488,728</td><td>$9.52</td></tr>
+        <tr><td><span class="dot" style="background:#94a3b8"></span>Marzo</td><td>1,477</td><td>$537</td><td style="color:var(--muted);font-size:10px">—</td><td>76,620</td><td>$883,653</td><td>$9.94</td></tr>
+        <tr><td><span class="dot" style="background:var(--ml)"></span>Abril</td><td>1,688</td><td>$539</td><td class="mom-up">▲ +16.8%</td><td>89,470</td><td>$1,036,186</td><td>$9.98</td></tr>
+        <tr><td><span class="dot" style="background:var(--purple)"></span>Mayo</td><td>1,953</td><td>$539</td><td class="mom-up">▲ +6.5%</td><td>95,331</td><td>$1,104,080</td><td>$9.98</td></tr>
+        <tr class="tr"><td>Total general</td><td>5,118</td><td>$538</td><td></td><td>261,421</td><td>$3,023,919</td><td>$9.97</td></tr>
       </tbody>
     </table>
     <p style="font-size:10px;color:var(--muted);margin-top:8px;padding-top:6px;border-top:1px solid #f1f5f9">
-      * $/Vaso neto = ingresos Sin IVA después de comisión ML. Mar y Abr confirmados desde hoja DESGLOSE.
-      Mayo estimado con tasa promedio. Ventas brutas = precio producto sin publicidad ni envío.
+      $ Ingresos = monto recibido después de comisión ML. $/Vaso neto = Ingresos ÷ 1.16 (sin IVA) ÷ vasos. Fuente: PRECIO DE VENTA.
     </p>
   </div>
   <div class="card">
@@ -286,13 +285,13 @@ const TOP5_MAYO = [
 ];
 
 const COLOR_CAP = {
-  labels: ['ARM','NG','RJ','RS/PST','BG','TSP','AZ','MD/PST','DR/GTRT','AZ/M'],
+  labels: ['ARM','NG','TSP','AZ/M','BG','RS/PST','AZ','MD/PST','RJ','DR/GTRT'],
   datasets: [
-    {label:'12OZ', color:'#3b82f6', values:[3540, 410, 150, 510, 800,   0,   0, 240,    0,   0]},
-    {label:'16OZ', color:'#8b5cf6', values:[16976,5057,3745,3207,3450,3633,3900,2200,    0,2635]},
-    {label:'20OZ', color:'#10b981', values:[740,   60,  30,  80,   0,   0, 120, 140,    0,   0]},
-    {label:'24OZ', color:'#f59e0b', values:[4066,  654, 523, 536,   0, 534,   0, 552, 2923,   0]},
-    {label:'34OZ', color:'#e11d48', values:[355,    0,   0,   5,   0,   0,   0,   0,    0,   0]},
+    {label:'12OZ', color:'#3b82f6', values:[3612, 410,   0,   0, 660, 320,   0, 370, 172,   0]},
+    {label:'16OZ', color:'#8b5cf6', values:[12781,5397,3708,3665,2955,2437,2820,1925,2130,   0]},
+    {label:'20OZ', color:'#10b981', values:[540,   90,   0,   0,   0,  80, 170, 100,  30,   0]},
+    {label:'24OZ', color:'#f59e0b', values:[4183,  854, 574,   0,   0, 509,   0, 562, 588,2235]},
+    {label:'34OZ', color:'#e11d48', values:[435,    0,   0,   0,   0,   5,   0,   0,   0,   0]},
   ]
 };
 
